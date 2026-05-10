@@ -1,0 +1,50 @@
+@theme {
+  --color-background: #F6EFE3; /* Warm Sand */
+  --color-foreground: #2A2A22; /* Deep Brown-Green */
+
+  --color-card: #F0EAD6; /* Slightly deeper sand for cards */
+  --color-card-foreground: #2A2A22;
+
+  --color-popover: #F6EFE3;
+  --color-popover-foreground: #2A2A22;
+
+  --color-primary: #1E4D3D; /* Deep Sacred Green */
+  --color-primary-foreground: #F6EFE3;
+
+  --color-secondary: #7A9278; /* Muted Sage */
+  --color-secondary-foreground: #F6EFE3;
+
+  --color-muted: #E5DCC6;
+  --color-muted-foreground: #7A9278;
+
+  --color-accent: #D97A1D; /* Saffron Orange */
+  --color-accent-foreground: #F6EFE3;
+
+  --color-glow: #E5B93D; /* Temple Gold */
+
+  --color-border: rgba(30, 77, 61, 0.12);
+  --color-input: rgba(30, 77, 61, 0.12);
+  --color-ring: #E5B93D;
+
+  --radius-lg: 1.25rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.75rem;
+
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-heading: var(--font-heading), serif;
+
+  --spacing-section: 6rem;
+  --spacing-container: 2.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}

@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@import "../styles/theme.css";
+
+/* Custom utility classes using theme variables */
+@layer utilities {
+  .section-padding {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+  }
+  
+  .container-padding {
+    padding-left: var(--spacing-container);
+    padding-right: var(--spacing-container);
+  }
+}
