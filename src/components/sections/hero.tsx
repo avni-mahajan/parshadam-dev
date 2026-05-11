@@ -65,6 +65,7 @@ export const Hero = () => {
         <Video
           src="/herosec.mp4"
           containerClassName="absolute inset-0 z-0 h-full w-full"
+          className="scale-[1.2]"
           objectFit="cover"
           overlay={
             <>
