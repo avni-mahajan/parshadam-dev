@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/sections/navbar";
 import { Hero } from "@/components/sections/hero";
+import { Purpose } from "@/components/sections/purpose";
 import { SacredMap } from "@/components/sections/sacred-map";
 import { FaithSelection } from "@/components/sections/faith-selection";
 import { Footer } from "@/components/sections/footer";
@@ -19,6 +20,7 @@ export default function Home() {
         {/* Soft atmospheric gradient top edge to blend the transition slightly */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent opacity-50 pointer-events-none" />
         
+        <Purpose />
         <SacredMap />
         <FaithSelection />
         <Footer />
