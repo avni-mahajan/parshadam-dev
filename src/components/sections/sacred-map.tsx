@@ -3,11 +3,12 @@
 import React, { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { shrines, type Shrine } from "./sacred-map-data";
-import { JourneyModal } from "./journey-modal";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { Video } from "@/components/ui/video";
+import Link from "next/link";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -48,12 +49,10 @@ const C = {
 export const SacredMap = () => {
   const [activeShrine, setActiveShrine] = useState<Shrine | null>(null);
   const [hoveredShrine, setHoveredShrine] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
   const [listModalType, setListModalType] = useState<"available" | "all" | null>(null);
 
   const containerRef = useRef<HTMLElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
-  const sidebarRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -78,13 +77,7 @@ export const SacredMap = () => {
       x: -40,
       duration: 1.2,
       ease: "power2.out"
-    }, "-=0.6")
-    .from(sidebarRef.current, {
-      x: 40,
-      opacity: 0,
-      duration: 1,
-      ease: "power2.out"
-    }, "-=0.8");
+    }, "-=0.6");
 
     gsap.to(mapRef.current, {
       y: -30,
@@ -110,13 +103,11 @@ export const SacredMap = () => {
 
   return (
     <>
-      <JourneyModal open={modalOpen} onClose={() => setModalOpen(false)} />
-
       <section
         ref={containerRef}
         id="sacred-origins"
         style={{ backgroundColor: C.bg, minHeight: "100vh" }}
-        className="relative overflow-hidden py-24"
+        className="relative py-24"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -125,66 +116,6 @@ export const SacredMap = () => {
           }}
         />
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 mb-24">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-            {[
-              {
-                num: "01",
-                title: "The Sacred Source",
-                body: "Parshadam is not a product — it is a living tradition preparing blessings at every Jyotirlinga and sacred center.",
-              },
-              {
-                num: "02",
-                title: "Unati Behan",
-                body: "A network of devoted women who travel to sacred shrines and receive the prasadam with intention.",
-              },
-              {
-                num: "03",
-                title: "Personal Carrier",
-                body: "Carrying blessings back with reverence, acting as the living bridge between the shrine and your family.",
-              },
-              {
-                num: "04",
-                title: "Divine Delivery",
-                body: "Arriving at your sacred milestone not as a package, but as a blessing personally carried from the source.",
-              },
-            ].map((step, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: idx * 0.1 }}
-                className="flex flex-col gap-4"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="text-sm font-bold opacity-20" style={{ color: C.saffron }}>{step.num}</span>
-                  <div className="h-[1px] flex-1" style={{ background: C.divider }} />
-                </div>
-                <h4 className="text-lg font-bold" style={{ color: C.text }}>{step.title}</h4>
-                <p className="text-sm leading-relaxed opacity-60 font-light" style={{ color: C.text }}>{step.body}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-20 flex flex-wrap items-center justify-between gap-12 pt-16 border-t" style={{ borderColor: C.divider }}>
-            <div className="max-w-md">
-              <h3 className="text-3xl font-bold leading-tight" style={{ color: C.text }}>
-                Sacred blessings, <span style={{ color: C.saffron }} className="italic font-light">carried with devotion.</span>
-              </h3>
-            </div>
-            <div className="flex gap-16">
-              <div className="flex flex-col gap-2">
-                <p className="text-5xl font-bold" style={{ color: C.saffron }}>{availableCount}</p>
-                <p className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-50">Active Shrines</p>
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="text-5xl font-bold" style={{ color: C.saffron }}>{shrines.length}</p>
-                <p className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-50">Mapped Centers</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div ref={headerRef} className="relative z-10 text-center px-6 mb-16">
           <motion.div
@@ -245,8 +176,17 @@ export const SacredMap = () => {
               </div>
             </div>
 
-            <div ref={mapRef} className="relative w-full aspect-[612/696] max-w-5xl mx-auto">
-              {/* SVG Filter Definition */}
+            <div className="relative w-full aspect-[612/696] max-w-2xl mx-auto rounded-3xl">
+              <motion.div 
+                className="relative w-full h-full"
+                animate={{
+                  scale: activeShrine ? 1.6 : 1,
+                  x: activeShrine ? `${(50 - mapCoordToPercent(activeShrine.coordinates[0], activeShrine.coordinates[1]).x) * 0.8}%` : 0,
+                  y: activeShrine ? `${(50 - mapCoordToPercent(activeShrine.coordinates[0], activeShrine.coordinates[1]).y) * 0.8}%` : 0,
+                }}
+                transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
+              >
+                {/* SVG Filter Definition */}
               <svg width="0" height="0" className="absolute">
                 <defs>
                   <filter id="brown-tint" colorInterpolationFilters="sRGB">
@@ -295,6 +235,7 @@ export const SacredMap = () => {
                   const isActive = activeShrine?.id === shrine.id;
                   const isHovered = hoveredShrine === shrine.id;
                   const isAvail = shrine.available;
+                  const shouldAnimate = activeShrine ? isActive : isAvail;
 
                   return (
                     <div
@@ -315,16 +256,16 @@ export const SacredMap = () => {
                       >
                         {/* Glow for Active/Hovered or Available */}
                         <AnimatePresence>
-                          {(isActive || isHovered || isAvail) && (
+                          {(isActive || isHovered || shouldAnimate) && (
                             <motion.div
                               initial={{ scale: 0.8, opacity: 0 }}
                               animate={{ 
-                                scale: isAvail ? [1, 2.2, 1] : 1.8, 
-                                opacity: isAvail ? [0.2, 0.4, 0.2] : 0.3 
+                                scale: shouldAnimate ? [1, 1.2, 1] : 1.1, 
+                                opacity: shouldAnimate ? [0.1, 0.2, 0.1] : 0.15 
                               }}
                               exit={{ opacity: 0 }}
                               transition={{ 
-                                repeat: isAvail ? Infinity : 0, 
+                                repeat: shouldAnimate ? Infinity : 0, 
                                 duration: 2,
                                 ease: "easeInOut"
                               }}
@@ -352,72 +293,82 @@ export const SacredMap = () => {
                   );
                 })}
               </div>
+            </motion.div>
 
               {/* Dynamic Floating Cards Overlay */}
               <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-50">
                 <AnimatePresence mode="wait">
-                  {activeShrine ? (
+                  {activeShrine && (
                     <motion.div
                       key="active-shrine-card"
                       initial={{ opacity: 0, scale: 0.9, y: 20 }}
                       animate={{ opacity: 1, scale: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                      className="pointer-events-auto w-full max-w-md mx-4 bg-white/95 backdrop-blur-2xl shadow-[0_30px_100px_rgba(0,0,0,0.12)] border p-8 relative rounded-2xl"
-                      style={{ borderColor: "rgba(217, 122, 29, 0.2)" }}
+                      className="pointer-events-auto w-full max-w-xs aspect-square mx-4 bg-black shadow-2xl relative rounded-3xl overflow-hidden group"
                     >
+                      <Link href={`/shrine/${activeShrine.id}`} className="block w-full h-full cursor-pointer">
+                        <Video 
+                          src="/herosec.mp4"
+                          containerClassName="absolute inset-0 w-full h-full"
+                          className="opacity-60 scale-[1.5] group-hover:scale-125 transition-transform duration-1000"
+                        />
+                        
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                        
+                        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                          <motion.span 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-[10px] uppercase tracking-[0.5em] text-white font-black mb-4"
+                          >
+                            ✦ {activeShrine.type}
+                          </motion.span>
+                          <h4 className="text-3xl font-bold text-white leading-tight">
+                            {activeShrine.name}
+                          </h4>
+                          <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <span className="text-[10px] uppercase tracking-widest text-white/60 border border-white/20 px-4 py-2 rounded-full">
+                              Explore Sacred Story
+                            </span>
+                          </div>
+                        </div>
+                      </Link>
+
                       <button 
-                        onClick={() => setActiveShrine(null)}
-                        className="absolute top-6 right-6 p-2 rounded-full hover:bg-black/5 transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setActiveShrine(null);
+                        }}
+                        className="absolute top-4 right-4 p-2 rounded-full bg-black/20 backdrop-blur-md hover:bg-black/40 transition-colors z-20"
                       >
-                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke={C.textLight}>
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="white">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                         </svg>
                       </button>
-                      
-                      <div className="mb-8">
-                        <span className="text-[10px] uppercase tracking-[0.5em] block mb-3 font-bold" style={{ color: C.saffron }}>
-                          ✦ {activeShrine.type}
-                        </span>
-                        <h4 className="text-3xl font-bold leading-tight mb-2" style={{ color: C.text }}>
-                          {activeShrine.name}
-                        </h4>
-                        <p className="text-xs uppercase tracking-[0.2em] font-medium opacity-60" style={{ color: C.text }}>
-                          {activeShrine.state}, India
-                        </p>
-                      </div>
-
-                      <p className="text-base leading-relaxed font-light italic mb-8" style={{ color: C.textMid }}>
-                        "{activeShrine.shortDesc}"
-                      </p>
-
-                      <div className="rounded-2xl p-6 mb-8 bg-black/[0.02] border border-black/[0.05]">
-                        <span className="text-[9px] uppercase tracking-[0.4em] block mb-3 font-bold opacity-40">
-                          Sacred Connection
-                        </span>
-                        <p className="text-[14px] leading-relaxed font-light" style={{ color: C.text }}>
-                          {activeShrine.sacredConnection}
-                        </p>
-                      </div>
-
-                      <button className="w-full group relative flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-bold transition-all duration-500 overflow-hidden"
-                        style={{
-                          background: activeShrine.available ? C.saffron : C.textLight,
-                          color: "white",
-                          boxShadow: activeShrine.available ? `0 10px 30px rgba(217, 122, 29, 0.3)` : 'none',
-                          cursor: activeShrine.available ? 'pointer' : 'not-allowed',
-                        }}
-                        onClick={() => activeShrine.available && setModalOpen(true)}
-                      >
-                        <span className="relative text-sm tracking-widest uppercase">
-                          {activeShrine.available ? "Let's Begin Your Journey" : "Coming Soon to your Home"}
-                        </span>
-                      </button>
                     </motion.div>
-                  ) : (
-                    /* Optional: Show overview if needed, but let's keep it clean as per "dynamically appear" */
-                    null
                   )}
                 </AnimatePresence>
+              </div>
+          </div>
+        </div>
+      </div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 mt-24">
+          <div className="flex flex-wrap items-center justify-between gap-12 pt-16 border-t" style={{ borderColor: C.divider }}>
+            <div className="max-w-md">
+              <h3 className="text-3xl font-bold leading-tight" style={{ color: C.text }}>
+                Sacred blessings, <span style={{ color: C.saffron }} className="italic font-light">carried with devotion.</span>
+              </h3>
+            </div>
+            <div className="flex gap-16">
+              <div className="flex flex-col gap-2">
+                <p className="text-5xl font-bold" style={{ color: C.saffron }}>{availableCount}</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-50">Active Shrines</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-5xl font-bold" style={{ color: C.saffron }}>{shrines.length}</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-50">Mapped Centers</p>
               </div>
             </div>
           </div>
