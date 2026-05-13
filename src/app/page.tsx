@@ -20,7 +20,6 @@ export default function Home() {
         {/* Soft atmospheric gradient top edge to blend the transition slightly */}
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent opacity-50 pointer-events-none" />
         
-        <Purpose />
         <SacredMap />
         <FaithSelection />
         <Footer />

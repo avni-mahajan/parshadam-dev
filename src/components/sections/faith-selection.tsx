@@ -65,18 +65,18 @@ export function FaithSelection() {
   const allProducts = [...products.Hindu, ...products.Sikh];
 
   return (
-    <section className="py-32 relative overflow-hidden bg-background">
+    <section className="pt-4 pb-16 relative overflow-hidden bg-background">
       {/* Sacred ambient background glow */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container max-w-7xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-24">
+        <div className="text-center mb-8">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-6 flex items-center justify-center gap-4"
+            className="mb-2 flex items-center justify-center gap-4"
           >
             <div className="h-[1px] w-8 bg-accent/30" />
             <span className="text-[10px] uppercase tracking-[0.5em] font-medium text-accent">Discover Your Path</span>
@@ -87,7 +87,7 @@ export function FaithSelection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-6xl font-heading mb-6 text-foreground tracking-tight"
+            className="text-5xl md:text-6xl font-heading mb-2 text-foreground tracking-tight"
           >
             Connect With Your <span className="text-primary italic">Devotion</span>
           </motion.h2>
@@ -102,88 +102,157 @@ export function FaithSelection() {
           </motion.p>
         </div>
 
-        {/* Faith Selection Cards */}
-        <div className="flex flex-col md:flex-row gap-12 justify-center max-w-3xl mx-auto mb-32 perspective-2000">
-          <TiltCard className="flex-1">
-            <motion.button
-              onClick={() => setSelectedFaith(selectedFaith === "Hindu" ? null : "Hindu")}
-              className={`relative w-full aspect-[3/4] rounded-2xl border transition-all duration-1000 overflow-hidden group ${
-                selectedFaith === "Hindu"
-                  ? "border-accent/40 shadow-[0_40px_100px_-20px_rgba(217,122,29,0.3)]"
-                  : "border-border/40 hover:border-accent/30"
-              }`}
-              whileTap={{ scale: 0.98 }}
+        {/* Faith Selection Cards with Cinematic Split Animation */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-10%" }}
+          className="relative max-w-5xl mx-auto mb-32 py-12"
+        >
+          {/* Central Spiritual Intro (Lotus/Devotion) */}
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, scale: 0.8, filter: "blur(10px)" },
+              show: {
+                opacity: [0, 1, 0],
+                scale: [0.8, 1.1, 1.5],
+                filter: ["blur(10px)", "blur(0px)", "blur(20px)"],
+                transition: { duration: 2.2, times: [0, 0.4, 1], ease: "easeInOut" }
+              }
+            }}
+            className="absolute inset-0 flex flex-col items-center justify-center z-0 pointer-events-none"
+          >
+            <div className="relative">
+              <span className="text-9xl text-accent opacity-20 block select-none">🪷</span>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute inset-0 border border-accent/10 rounded-full scale-[1.8]"
+              />
+            </div>
+            <motion.span
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 2.2, times: [0.1, 0.4, 0.9] }}
+              className="text-[12px] uppercase tracking-[1.5em] text-accent font-bold mt-8"
             >
-              {/* Background Image */}
-              <div className="absolute inset-0 z-0">
-                <Image src="/images/hindu.jpg" alt="Hindu" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className={`absolute inset-0 transition-colors duration-1000 ${selectedFaith === "Hindu" ? "bg-black/40" : "bg-black/65 group-hover:bg-black/40"}`} />
-              </div>
+              Devotion
+            </motion.span>
+          </motion.div>
 
-              {/* Inner architectural border */}
-              <div className={`absolute inset-4 z-10 rounded-xl border border-dashed transition-colors duration-1000 ${
-                selectedFaith === "Hindu" ? "border-accent/60" : "border-white/10 group-hover:border-accent/40"
-              }`} />
-              
-              <div className="relative z-20 flex flex-col items-center justify-center h-full px-8 text-center mt-12">
-                <div className={`w-28 h-28 rounded-full flex items-center justify-center mb-12 transition-all duration-1000 backdrop-blur-xl ${
-                  selectedFaith === "Hindu" ? "bg-accent/20 shadow-[0_0_50px_rgba(217,122,29,0.4)] border border-accent/40" : "bg-white/5 group-hover:bg-accent/10 border border-white/10"
-                }`}>
-                  <span className={`text-7xl transition-all duration-1000 ${
-                    selectedFaith === "Hindu" ? "text-accent scale-110 drop-shadow-[0_0_20px_rgba(217,122,29,0.8)]" : "text-white group-hover:text-accent"
-                  }`}>ॐ</span>
-                </div>
-                <h3 className={`text-3xl md:text-4xl font-heading mb-6 transition-colors duration-700 tracking-[0.2em] uppercase ${selectedFaith === "Hindu" ? "text-accent" : "text-white"}`}>
-                  Sanatan
-                </h3>
-                <div className="w-16 h-[1px] bg-accent/30 mb-8 transition-all duration-700 group-hover:w-32 group-hover:bg-accent/60" />
-                <p className="text-[10px] text-white/70 leading-loose max-w-[240px] font-medium tracking-[0.3em] uppercase">
-                  Discover sacred prasadam from ancient, eternal temples.
-                </p>
-              </div>
-            </motion.button>
-          </TiltCard>
-
-          <TiltCard className="flex-1">
-            <motion.button
-              onClick={() => setSelectedFaith(selectedFaith === "Sikh" ? null : "Sikh")}
-              className={`relative w-full aspect-[3/4] rounded-2xl border transition-all duration-1000 overflow-hidden group ${
-                selectedFaith === "Sikh"
-                  ? "border-secondary/40 shadow-[0_40px_100px_-20px_rgba(122,146,120,0.3)]"
-                  : "border-border/40 hover:border-secondary/30"
-              }`}
-              whileTap={{ scale: 0.98 }}
+          <div className="flex flex-col md:flex-row gap-12 justify-center perspective-2000 relative z-10">
+            {/* Hindu Card */}
+            <motion.div
+              className="flex-1 max-w-[380px]"
+              variants={{
+                hidden: { opacity: 0, x: 60, rotateY: 25, scale: 0.9, filter: "blur(10px)" },
+                show: {
+                  opacity: 1,
+                  x: 0,
+                  rotateY: 0,
+                  scale: 1,
+                  filter: "blur(0px)",
+                  transition: { delay: 1.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }
+                }
+              }}
             >
-              {/* Background Image */}
-              <div className="absolute inset-0 z-0">
-                <Image src="/images/sikh.jpg" alt="Sikhi" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className={`absolute inset-0 transition-colors duration-1000 ${selectedFaith === "Sikh" ? "bg-secondary/40" : "bg-black/65 group-hover:bg-secondary/40"}`} />
-              </div>
+              <TiltCard>
+                <motion.button
+                  onClick={() => setSelectedFaith(selectedFaith === "Hindu" ? null : "Hindu")}
+                  className={`relative w-full aspect-[3/4] rounded-2xl border transition-all duration-1000 overflow-hidden group ${
+                    selectedFaith === "Hindu"
+                      ? "border-accent/40 shadow-[0_40px_100px_-20px_rgba(217,122,29,0.3)]"
+                      : "border-border/40 hover:border-accent/30"
+                  }`}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0 z-0">
+                    <Image src="/images/hindu.jpg" alt="Hindu" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className={`absolute inset-0 transition-colors duration-1000 ${selectedFaith === "Hindu" ? "bg-black/40" : "bg-black/65 group-hover:bg-black/40"}`} />
+                  </div>
 
-              {/* Inner architectural border */}
-              <div className={`absolute inset-4 z-10 rounded-xl border border-dashed transition-colors duration-1000 ${
-                selectedFaith === "Sikh" ? "border-secondary/60" : "border-white/10 group-hover:border-secondary/40"
-              }`} />
-              
-              <div className="relative z-20 flex flex-col items-center justify-center h-full px-8 text-center mt-12">
-                <div className={`w-28 h-28 rounded-full flex items-center justify-center mb-12 transition-all duration-1000 backdrop-blur-xl ${
-                  selectedFaith === "Sikh" ? "bg-secondary/20 shadow-[0_0_50px_rgba(122,146,120,0.4)] border border-secondary/40" : "bg-white/5 group-hover:bg-secondary/10 border border-white/10"
-                }`}>
-                  <span className={`text-7xl transition-all duration-1000 ${
-                    selectedFaith === "Sikh" ? "text-secondary scale-110 drop-shadow-[0_0_20px_rgba(122,146,120,0.8)]" : "text-white group-hover:text-secondary"
-                  }`}>ੴ</span>
-                </div>
-                <h3 className={`text-3xl md:text-4xl font-heading mb-6 transition-colors duration-700 tracking-[0.2em] uppercase ${selectedFaith === "Sikh" ? "text-secondary" : "text-white"}`}>
-                  Sikhi
-                </h3>
-                <div className="w-16 h-[1px] bg-secondary/30 mb-8 transition-all duration-700 group-hover:w-32 group-hover:bg-secondary/60" />
-                <p className="text-[10px] text-white/70 leading-loose max-w-[240px] font-medium tracking-[0.3em] uppercase">
-                  Receive divine blessings from deeply historic Gurudwaras.
-                </p>
-              </div>
-            </motion.button>
-          </TiltCard>
-        </div>
+                  {/* Inner architectural border */}
+                  <div className={`absolute inset-4 z-10 rounded-xl border border-dashed transition-colors duration-1000 ${
+                    selectedFaith === "Hindu" ? "border-accent/60" : "border-white/10 group-hover:border-accent/40"
+                  }`} />
+
+                  <div className="relative z-20 flex flex-col items-center justify-center h-full px-8 text-center mt-12">
+                    <div className={`w-28 h-28 rounded-full flex items-center justify-center mb-12 transition-all duration-1000 backdrop-blur-xl ${
+                      selectedFaith === "Hindu" ? "bg-accent/20 shadow-[0_0_50px_rgba(217,122,29,0.4)] border border-accent/40" : "bg-white/5 group-hover:bg-accent/10 border border-white/10"
+                    }`}>
+                      <span className={`text-7xl transition-all duration-1000 ${
+                        selectedFaith === "Hindu" ? "text-accent scale-110 drop-shadow-[0_0_20px_rgba(217,122,29,0.8)]" : "text-white group-hover:text-accent"
+                      }`}>ॐ</span>
+                    </div>
+                    <h3 className={`text-3xl md:text-4xl font-heading mb-6 transition-colors duration-700 tracking-[0.2em] uppercase ${selectedFaith === "Hindu" ? "text-accent" : "text-white"}`}>
+                      Sanatan
+                    </h3>
+                    <div className="w-16 h-[1px] bg-accent/30 mb-8 transition-all duration-700 group-hover:w-32 group-hover:bg-accent/60" />
+                    <p className="text-[10px] text-white/70 leading-loose max-w-[240px] font-medium tracking-[0.3em] uppercase">
+                      Discover sacred prasadam from ancient, eternal temples.
+                    </p>
+                  </div>
+                </motion.button>
+              </TiltCard>
+            </motion.div>
+
+            {/* Sikhi Card */}
+            <motion.div
+              className="flex-1 max-w-[380px]"
+              variants={{
+                hidden: { opacity: 0, x: -60, rotateY: -25, scale: 0.9, filter: "blur(10px)" },
+                show: {
+                  opacity: 1,
+                  x: 0,
+                  rotateY: 0,
+                  scale: 1,
+                  filter: "blur(0px)",
+                  transition: { delay: 1.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }
+                }
+              }}
+            >
+              <TiltCard>
+                <motion.button
+                  onClick={() => setSelectedFaith(selectedFaith === "Sikh" ? null : "Sikh")}
+                  className={`relative w-full aspect-[3/4] rounded-2xl border transition-all duration-1000 overflow-hidden group ${
+                    selectedFaith === "Sikh"
+                      ? "border-secondary/40 shadow-[0_40px_100px_-20px_rgba(122,146,120,0.3)]"
+                      : "border-border/40 hover:border-secondary/30"
+                  }`}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {/* Background Image */}
+                  <div className="absolute inset-0 z-0">
+                    <Image src="/images/sikh.jpg" alt="Sikhi" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className={`absolute inset-0 transition-colors duration-1000 ${selectedFaith === "Sikh" ? "bg-secondary/40" : "bg-black/65 group-hover:bg-secondary/40"}`} />
+                  </div>
+
+                  {/* Inner architectural border */}
+                  <div className={`absolute inset-4 z-10 rounded-xl border border-dashed transition-colors duration-1000 ${
+                    selectedFaith === "Sikh" ? "border-secondary/60" : "border-white/10 group-hover:border-secondary/40"
+                  }`} />
+
+                  <div className="relative z-20 flex flex-col items-center justify-center h-full px-8 text-center mt-12">
+                    <div className={`w-28 h-28 rounded-full flex items-center justify-center mb-12 transition-all duration-1000 backdrop-blur-xl ${
+                      selectedFaith === "Sikh" ? "bg-secondary/20 shadow-[0_0_50px_rgba(122,146,120,0.4)] border border-secondary/40" : "bg-white/5 group-hover:bg-secondary/10 border border-white/10"
+                    }`}>
+                      <span className={`text-7xl transition-all duration-1000 ${
+                        selectedFaith === "Sikh" ? "text-secondary scale-110 drop-shadow-[0_0_20px_rgba(122,146,120,0.8)]" : "text-white group-hover:text-secondary"
+                      }`}>ੴ</span>
+                    </div>
+                    <h3 className={`text-3xl md:text-4xl font-heading mb-6 transition-colors duration-700 tracking-[0.2em] uppercase ${selectedFaith === "Sikh" ? "text-secondary" : "text-white"}`}>
+                      Sikhi
+                    </h3>
+                    <div className="w-16 h-[1px] bg-secondary/30 mb-8 transition-all duration-700 group-hover:w-32 group-hover:bg-secondary/60" />
+                    <p className="text-[10px] text-white/70 leading-loose max-w-[240px] font-medium tracking-[0.3em] uppercase">
+                      Receive divine blessings from deeply historic Gurudwaras.
+                    </p>
+                  </div>
+                </motion.button>
+              </TiltCard>
+            </motion.div>
+          </div>
+        </motion.div>
 
         {/* Dynamic Products Section */}
         <AnimatePresence mode="wait">
@@ -196,7 +265,7 @@ export function FaithSelection() {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="mt-20"
             >
-              <div className="text-center mb-16">
+              <div className="text-center mb-4">
                 <p className="text-accent text-[10px] uppercase tracking-[0.5em] font-medium mb-4">The Divine Collection</p>
                 <h3 className="text-4xl md:text-5xl font-heading text-foreground tracking-tight">A Journey Through Faith</h3>
               </div>

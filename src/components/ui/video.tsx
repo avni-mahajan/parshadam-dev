@@ -29,7 +29,25 @@ export const Video = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const aspectStyles = {
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Set the JS property directly — React only sets the HTML attribute,
+    // which browsers ignore after initial render for muted toggling.
+    video.muted = muted;
+
+    // Browsers require a fresh play() call after unmuting for audio to start.
+    if (!muted) {
+      video.play().catch(() => {
+        // Browser blocked unmuted playback (autoplay policy).
+        // Fall back to muted silently.
+        video.muted = true;
+      });
+    }
+  }, [muted]);
+
+  const aspectStyles: Record<string, string> = {
     "16/9": "aspect-video",
     "4/3": "aspect-[4/3]",
     "1/1": "aspect-square",
@@ -45,12 +63,12 @@ export const Video = ({
         containerClassName
       )}
     >
+      {/* muted is intentionally omitted from JSX — controlled via useEffect */}
       <video
         ref={videoRef}
         src={src}
         poster={poster}
         autoPlay={autoPlay}
-        muted={muted}
         loop={loop}
         playsInline={playsInline}
         onLoadedData={() => setIsLoaded(true)}
@@ -63,7 +81,7 @@ export const Video = ({
         )}
         {...props}
       />
-      
+
       {/* Skeleton / Placeholder */}
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">

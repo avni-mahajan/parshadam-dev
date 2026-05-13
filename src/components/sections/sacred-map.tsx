@@ -14,12 +14,11 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Bounding box from india.svg metadata
 const MAP_BOUNDS = {
   minLon: 68.18401,
   maxLon: 97.418146,
   minLat: 6.753659,
-  maxLat: 37.084109
+  maxLat: 37.084109,
 };
 
 const mapCoordToPercent = (lon: number, lat: number) => {
@@ -29,336 +28,413 @@ const mapCoordToPercent = (lon: number, lat: number) => {
 };
 
 const C = {
-  bg: "#F6EFE3", // Warm Sand
-  bgDeep: "#EDDFC7", 
-  text: "#2A2A22", // Deep Brown-Green
-  textMid: "#7A9278", // Muted Sage
+  bg: "#F6EFE3",
+  bgDeep: "#EDDFC7",
+  text: "#2A2A22",
+  textMid: "#7A9278",
   textLight: "#A5B0A4",
-  saffron: "#D97A1D", // Saffron Orange
+  saffron: "#D97A1D",
   saffronSoft: "#E59F5A",
-  gold: "#E5B93D", // Temple Gold
-  goldFaint: "rgba(229,185,61,0.12)",
   divider: "rgba(30,77,61,0.15)",
-  mapFill: "#FFFFFF",
-  mapStroke: "rgba(30,77,61,0.25)",
-  mapHover: "#EDDFC7",
-  markerAvail: "#1E4D3D", // Deep Sacred Green
-  markerSoon: "#D97A1D", // Saffron Orange
 };
 
 export const SacredMap = () => {
   const [activeShrine, setActiveShrine] = useState<Shrine | null>(null);
   const [hoveredShrine, setHoveredShrine] = useState<string | null>(null);
-  const [listModalType, setListModalType] = useState<"available" | "all" | null>(null);
+  const [mapRevealed, setMapRevealed] = useState(false);
+  const mapRevealedRef = useRef(false);
 
-  const containerRef = useRef<HTMLElement>(null);
-  const mapRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
+  const heroTextRef = useRef<HTMLDivElement>(null);
+  const warmOverlayRef = useRef<HTMLDivElement>(null);
+  const mapLayerRef = useRef<HTMLDivElement>(null);
+
+  const availableCount = shrines.filter((s) => s.available).length;
 
   useGSAP(() => {
+    if (!videoRef.current || !heroTextRef.current || !warmOverlayRef.current || !mapLayerRef.current) return;
+
+    // ── Main scrubbed timeline ──────────────────────────────────────
+    // pin: true keeps the section fixed while the user scrolls 240vh worth
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      }
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "+=240%",        // pin duration = 2.4x viewport height
+        pin: true,
+        pinSpacing: true,
+        scrub: 1.5,
+        onUpdate: (self) => {
+          const reveal = self.progress > 0.58;
+          if (reveal !== mapRevealedRef.current) {
+            mapRevealedRef.current = reveal;
+            setMapRevealed(reveal);
+          }
+        },
+      },
     });
 
-    tl.from(headerRef.current, {
-      y: 40,
+    // Phase 1 (0 → 0.4): hero text dissolves upward
+    tl.to(heroTextRef.current, {
+      y: -70,
       opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    })
-    .from(mapRef.current, {
       scale: 0.95,
-      opacity: 0,
-      x: -40,
-      duration: 1.2,
-      ease: "power2.out"
-    }, "-=0.6");
+      filter: "blur(10px)",
+      ease: "power3.inOut",
+      duration: 0.5,
+    }, 0);
 
-    gsap.to(mapRef.current, {
-      y: -30,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      }
-    });
-  }, { scope: containerRef });
+    // Phase 2 (0.3 → 0.7): video dims — stays as living background
+    tl.to(videoRef.current, {
+      opacity: 0.35,
+      ease: "power2.inOut",
+      duration: 0.6,
+    }, 0.3);
+
+    // Phase 2 (0.35 → 0.75): warm sand overlay blooms
+    tl.to(warmOverlayRef.current, {
+      opacity: 1,
+      ease: "power2.inOut",
+      duration: 0.55,
+    }, 0.35);
+
+    // Phase 3 (0.52 → 1): map layer assembles from center
+    tl.fromTo(
+      mapLayerRef.current,
+      { opacity: 0, scale: 0.88, y: 50, filter: "blur(24px)" },
+      { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", ease: "expo.out", duration: 0.7 },
+      0.52
+    );
+  }, { scope: sectionRef, dependencies: [] });
 
   const handleSelect = useCallback((shrine: Shrine) => {
     setActiveShrine(shrine);
-    setListModalType(null);
   }, []);
-
-  const availableCount = shrines.filter((s) => s.available).length;
-  
-  const displayedList = listModalType === "available" 
-    ? shrines.filter(s => s.available) 
-    : shrines;
 
   return (
     <>
+      {/* ════════════════════════════════════════════════════
+          Pinned section — GSAP holds this in viewport
+      ════════════════════════════════════════════════════ */}
       <section
-        ref={containerRef}
+        ref={sectionRef}
         id="sacred-origins"
-        style={{ backgroundColor: C.bg, minHeight: "100vh" }}
-        className="relative py-24"
+        className="relative h-screen w-full overflow-hidden"
       >
+        {/* LAYER 1 — Cinematic video */}
+        <div ref={videoRef} className="absolute inset-0 z-0" style={{ opacity: 0.85 }}>
+          <Video
+            src="/herosec.mp4"
+            containerClassName="absolute inset-0 w-full h-full"
+            className="scale-[1.06]"
+            objectFit="cover"
+            overlay={
+              <>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/30 to-black/85" />
+                <div className="absolute inset-0 bg-[#0F1A15]/45" />
+              </>
+            }
+          />
+        </div>
+
+        {/* LAYER 2 — Warm sand overlay — lighter so video breathes through */}
         <div
-          className="absolute inset-0 pointer-events-none"
+          ref={warmOverlayRef}
+          className="absolute inset-0 z-10 opacity-0 pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse 70% 60% at 50% 40%, ${C.bgDeep}, transparent)`,
+            background: `linear-gradient(150deg, ${C.bgDeep}CC 0%, ${C.bg}CC 50%, ${C.bgDeep}CC 100%)`,
           }}
         />
 
-
-        <div ref={headerRef} className="relative z-10 text-center px-6 mb-16">
+        {/* LAYER 3 — Hero text (phase 1) */}
+        <div
+          ref={heroTextRef}
+          className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center"
+        >
           <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: "circOut" }}
-            className="flex items-center justify-center gap-3 mb-6"
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+            className="flex items-center justify-center gap-4 mb-10"
           >
-            <div className="h-[1px] w-16" style={{ background: C.divider }} />
-            <span style={{ color: C.saffron }} className="text-lg leading-none">✦</span>
-            <div className="h-[1px] w-16" style={{ background: C.divider }} />
+            <div className="h-px w-16" style={{ background: `linear-gradient(to right, transparent, ${C.saffron}50)` }} />
+            <div className="h-px w-16" style={{ background: `linear-gradient(to left, transparent, ${C.saffron}50)` }} />
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-4xl md:text-5xl lg:text-[4rem] font-bold mb-6 leading-tight"
-            style={{ color: C.text }}
+            initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+            className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-tight tracking-tight text-white drop-shadow-2xl mb-8 max-w-4xl"
+            style={{ fontFamily: "var(--font-eb-garamond, Georgia, serif)" }}
           >
-            Where Every Blessing Is Born
+            Where Every{" "}
+            <span className="italic font-light" style={{ color: C.saffronSoft }}>
+              Blessing
+            </span>{" "}
+            Is Born
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light italic"
-            style={{ color: C.textMid }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.7, ease: "easeOut" }}
+            className="text-sm md:text-base text-white/65 max-w-xl mx-auto leading-relaxed font-light italic tracking-wide"
           >
             From the sanctum of India&apos;s holiest shrines to your family&apos;s most
             cherished celebrations — carried with devotion, delivered with love.
           </motion.p>
+
+          {/* Scroll cue */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2, duration: 1 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+          >
+            <span className="text-[9px] uppercase tracking-[0.6em] text-white/35 font-medium">Scroll to explore</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+              className="w-px h-10"
+              style={{ background: `linear-gradient(to bottom, ${C.saffron}50, transparent)` }}
+            />
+          </motion.div>
         </div>
 
-        <div className="relative z-10 max-w-[1600px] mx-auto px-6">
-          <div className="flex flex-col items-center">
-            
-            {/* Legend - Simplified and Centered */}
-            <div className="inline-flex items-center gap-8 px-6 py-3 rounded-full bg-white/40 backdrop-blur-md border border-white/40 shadow-sm mb-12">
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: C.saffron }}></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3" style={{ backgroundColor: C.saffron }}></span>
-                </span>
-                <span className="text-[10px] uppercase tracking-[0.3em] font-bold" style={{ color: C.textLight }}>
-                  Active Serving Center
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "rgba(217, 122, 29, 0.4)", border: `1px solid ${C.saffron}` }} />
-                <span className="text-[10px] uppercase tracking-[0.3em] font-bold" style={{ color: C.textLight }}>
-                  Upcoming Sacred Shrine
-                </span>
-              </div>
+        {/* LAYER 4 — Map layer (phase 2+) */}
+        <div
+          ref={mapLayerRef}
+          className="absolute inset-0 z-30 flex flex-col items-center justify-center px-12 opacity-0"
+          style={{ pointerEvents: mapRevealed ? "auto" : "none" }}
+        >
+          <div className="w-full flex flex-row items-center justify-between gap-8">
+            {/* Title - Left */}
+            <div className="flex-1 hidden lg:block pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{
+                  opacity: (mapRevealed && !activeShrine) ? 1 : 0,
+                  x: (mapRevealed && !activeShrine) ? 0 : -30
+                }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="max-w-[240px]"
+              >
+                <div className="h-px w-12 mb-6" style={{ background: C.saffron }} />
+                <h2
+                  className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight mb-6"
+                  style={{ color: C.text, fontFamily: "var(--font-eb-garamond, Georgia, serif)" }}
+                >
+                  Sacred <br />
+                  <span className="italic font-light" style={{ color: C.saffron }}>Origins</span> <br />
+                  of India
+                </h2>
+                <p className="text-[10px] uppercase tracking-[0.3em] font-medium leading-relaxed" style={{ color: C.textLight }}>
+                  Discover the spiritual geography of the subcontinent, where every center tells a story of ancient devotion.
+                </p>
+              </motion.div>
             </div>
 
-            <div className="relative w-full aspect-[612/696] max-w-2xl mx-auto rounded-3xl">
-              <motion.div 
+            {/* ── The Map (Larger) ── */}
+            <div className="relative w-full max-w-xl mx-auto flex-[2]" style={{ aspectRatio: "612/696" }}>
+              {/* Outer: zoom + pan to active shrine */}
+              <motion.div
                 className="relative w-full h-full"
                 animate={{
-                  scale: activeShrine ? 1.6 : 1,
-                  x: activeShrine ? `${(50 - mapCoordToPercent(activeShrine.coordinates[0], activeShrine.coordinates[1]).x) * 0.8}%` : 0,
-                  y: activeShrine ? `${(50 - mapCoordToPercent(activeShrine.coordinates[0], activeShrine.coordinates[1]).y) * 0.8}%` : 0,
+                  scale: activeShrine ? 4.5 : 1,
+                  x: activeShrine ? `${(50 - mapCoordToPercent(activeShrine.coordinates[0], activeShrine.coordinates[1]).x) * 4.5}%` : 0,
+                  y: activeShrine ? `${(50 - mapCoordToPercent(activeShrine.coordinates[0], activeShrine.coordinates[1]).y) * 4.5}%` : 0,
                 }}
-                transition={{ duration: 1, ease: [0.32, 0.72, 0, 1] }}
+                transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1] }}
               >
-                {/* SVG Filter Definition */}
-              <svg width="0" height="0" className="absolute">
-                <defs>
-                  <filter id="brown-tint" colorInterpolationFilters="sRGB">
-                    <feColorMatrix type="matrix" values="
-                      0.77 0 0 0 0.16 
-                      0.71 0 0 0 0.16 
-                      0.65 0 0 0 0.13 
-                      0 0 0 1 0" 
+                {/* Inner: continuous float drift when card is showing */}
+                <motion.div
+                  className="relative w-full h-full"
+                  animate={activeShrine ? {
+                    y: [0, -3, 1, -2, 0],
+                    x: [0, 1.5, -1, 1, 0],
+                  } : { y: 0, x: 0 }}
+                  transition={activeShrine ? {
+                    repeat: Infinity,
+                    duration: 8,
+                    ease: "easeInOut",
+                    repeatType: "mirror",
+                  } : { duration: 0.8 }}
+                >
+                  <svg width="0" height="0" className="absolute">
+                    <defs>
+                      <filter id="warm-map-tint" colorInterpolationFilters="sRGB">
+                        <feColorMatrix type="matrix" values="
+                      0.82 0.10 0 0 0.08
+                      0.60 0.55 0 0 0.05
+                      0.40 0.10 0 0 0.03
+                      0    0    0 1 0" />
+                      </filter>
+                    </defs>
+                  </svg>
+
+                  <div className="absolute inset-0">
+                    <Image
+                      src="/svg/india.svg"
+                      alt="Sacred Map of India"
+                      fill
+                      className="object-contain drop-shadow-2xl"
+                      style={{ filter: "url(#warm-map-tint)" }}
+                      priority
                     />
-                  </filter>
-                </defs>
-              </svg>
+                  </div>
 
-              {/* The Map */}
-              <div className="absolute inset-0">
-                <Image
-                  src="/svg/india.svg"
-                  alt="India Map"
-                  fill
-                  className="object-contain drop-shadow-2xl"
-                  style={{ filter: "url(#brown-tint)", opacity: 1 }}
-                  priority
-                />
-              </div>
-              
-              {/* Subtle border mask */}
-              <div 
-                className="absolute inset-0 opacity-10"
-                style={{ 
-                  maskImage: "url('/svg/india.svg')",
-                  maskSize: "contain",
-                  maskPosition: "center",
-                  maskRepeat: "no-repeat",
-                  WebkitMaskImage: "url('/svg/india.svg')",
-                  WebkitMaskSize: "contain",
-                  WebkitMaskPosition: "center",
-                  WebkitMaskRepeat: "no-repeat",
-                  border: `2px solid ${C.saffron}`
-                }}
-              />
-              
-              {/* Custom Markers Overlay */}
-              <div className="absolute inset-0 pointer-events-none">
-                {shrines.map((shrine) => {
-                  const { x, y } = mapCoordToPercent(shrine.coordinates[0], shrine.coordinates[1]);
-                  const isActive = activeShrine?.id === shrine.id;
-                  const isHovered = hoveredShrine === shrine.id;
-                  const isAvail = shrine.available;
-                  const shouldAnimate = activeShrine ? isActive : isAvail;
+                  {/* Saffron glow mask - breathing pulse */}
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    animate={{
+                      opacity: [0.4, 0.7, 0.4],
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 8,
+                      ease: "easeInOut",
+                    }}
+                    style={{
+                      maskImage: "url('/svg/india.svg')",
+                      maskSize: "contain",
+                      maskPosition: "center",
+                      maskRepeat: "no-repeat",
+                      WebkitMaskImage: "url('/svg/india.svg')",
+                      WebkitMaskSize: "contain",
+                      WebkitMaskPosition: "center",
+                      WebkitMaskRepeat: "no-repeat",
+                      background: `radial-gradient(ellipse at center, ${C.saffron}25, transparent 70%)`,
+                    }}
+                  />
 
-                  return (
-                    <div
-                      key={shrine.id}
-                      className="absolute pointer-events-auto"
-                      style={{ 
-                        left: `${x}%`, 
-                        top: `${y}%`,
-                        transform: 'translate(-50%, -50%)',
-                        zIndex: isActive ? 50 : 20
-                      }}
-                    >
-                      <button
-                        onClick={() => handleSelect(shrine)}
-                        onMouseEnter={() => setHoveredShrine(shrine.id)}
-                        onMouseLeave={() => setHoveredShrine(null)}
-                        className="relative flex items-center justify-center w-10 h-10 group"
-                      >
-                        {/* Glow for Active/Hovered or Available */}
-                        <AnimatePresence>
-                          {(isActive || isHovered || shouldAnimate) && (
-                            <motion.div
-                              initial={{ scale: 0.8, opacity: 0 }}
-                              animate={{ 
-                                scale: shouldAnimate ? [1, 1.2, 1] : 1.1, 
-                                opacity: shouldAnimate ? [0.1, 0.2, 0.1] : 0.15 
-                              }}
-                              exit={{ opacity: 0 }}
-                              transition={{ 
-                                repeat: shouldAnimate ? Infinity : 0, 
-                                duration: 2,
-                                ease: "easeInOut"
-                              }}
-                              className="absolute w-full h-full rounded-full"
-                              style={{ backgroundColor: C.saffron }}
-                            />
-                          )}
-                        </AnimatePresence>
+                  {/* Markers */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {shrines.map((shrine, i) => {
+                      const { x, y } = mapCoordToPercent(shrine.coordinates[0], shrine.coordinates[1]);
+                      const isActive = activeShrine?.id === shrine.id;
+                      const isHovered = hoveredShrine === shrine.id;
+                      const isAvail = shrine.available;
 
-                        {/* The Dot */}
-                        <motion.div 
-                          className="rounded-full shadow-lg border-2 border-white"
-                          animate={{
-                            scale: isActive ? 1.5 : (isHovered ? 1.2 : 1),
-                            backgroundColor: isAvail ? C.saffron : "rgba(217, 122, 29, 0.5)"
-                          }}
-                          style={{ 
-                            width: '12px',
-                            height: '12px',
-                            backgroundColor: C.saffron
-                          }}
-                        />
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
-            </motion.div>
-
-              {/* Dynamic Floating Cards Overlay */}
-              <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-50">
-                <AnimatePresence mode="wait">
-                  {activeShrine && (
-                    <motion.div
-                      key="active-shrine-card"
-                      initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                      className="pointer-events-auto w-full max-w-xs aspect-square mx-4 bg-black shadow-2xl relative rounded-3xl overflow-hidden group"
-                    >
-                      <Link href={`/shrine/${activeShrine.id}`} className="block w-full h-full cursor-pointer">
-                        <Video 
-                          src="/herosec.mp4"
-                          containerClassName="absolute inset-0 w-full h-full"
-                          className="opacity-60 scale-[1.5] group-hover:scale-125 transition-transform duration-1000"
-                        />
-                        
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                        
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                          <motion.span 
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-[10px] uppercase tracking-[0.5em] text-white font-black mb-4"
+                      return (
+                        <div
+                          key={shrine.id}
+                          className="absolute pointer-events-auto"
+                          style={{ left: `${x}%`, top: `${y}%`, transform: "translate(-50%, -50%)", zIndex: isActive ? 50 : 20 }}
+                        >
+                          <motion.button
+                            onClick={() => handleSelect(shrine)}
+                            onMouseEnter={() => setHoveredShrine(shrine.id)}
+                            onMouseLeave={() => setHoveredShrine(null)}
+                            className="relative flex items-center justify-center w-8 h-8 group"
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={mapRevealed ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                            transition={{ delay: mapRevealed ? 0.06 + i * 0.035 : 0, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                           >
-                            ✦ {activeShrine.type}
-                          </motion.span>
-                          <h4 className="text-3xl font-bold text-white leading-tight">
-                            {activeShrine.name}
-                          </h4>
-                          <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <span className="text-[10px] uppercase tracking-widest text-white/60 border border-white/20 px-4 py-2 rounded-full">
-                              Explore Sacred Story
-                            </span>
-                          </div>
+                            {/* Pulse for available shrines */}
+                            {isAvail && !activeShrine && (
+                              <motion.div
+                                className="absolute w-full h-full rounded-full"
+                                style={{ backgroundColor: C.saffron }}
+                                animate={{ scale: [1, 1.9, 1], opacity: [0.2, 0, 0.2] }}
+                                transition={{ repeat: Infinity, duration: 2.6, ease: "easeInOut", delay: i * 0.12 }}
+                              />
+                            )}
+                            {/* Active pulse */}
+                            {isActive && (
+                              <motion.div
+                                className="absolute w-full h-full rounded-full"
+                                style={{ backgroundColor: C.saffron }}
+                                animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
+                                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                              />
+                            )}
+                            {/* Hover halo */}
+                            <AnimatePresence>
+                              {(isHovered || isActive) && (
+                                <motion.div
+                                  initial={{ scale: 0.5, opacity: 0 }}
+                                  animate={{ scale: 1.5, opacity: 0.18 }}
+                                  exit={{ scale: 0.5, opacity: 0 }}
+                                  className="absolute w-full h-full rounded-full"
+                                  style={{ backgroundColor: C.saffron }}
+                                />
+                              )}
+                            </AnimatePresence>
+                            {/* Dot */}
+                            <motion.div
+                              className="rounded-full border-2 border-white shadow-md"
+                              animate={{
+                                scale: isActive ? 1.6 : isHovered ? 1.25 : 1,
+                                backgroundColor: isAvail ? C.saffron : "rgba(217,122,29,0.4)",
+                                boxShadow: isActive ? `0 0 16px ${C.saffron}80` : "none",
+                              }}
+                              transition={{ duration: 0.25, ease: "easeOut" }}
+                              style={{ width: 10, height: 10, backgroundColor: C.saffron }}
+                            />
+                          </motion.button>
                         </div>
-                      </Link>
+                      );
+                    })}
+                  </div>
+                </motion.div> {/* end inner float */}
+              </motion.div> {/* end outer zoom */}
+            </div>
 
-                      <button 
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setActiveShrine(null);
-                        }}
-                        className="absolute top-4 right-4 p-2 rounded-full bg-black/20 backdrop-blur-md hover:bg-black/40 transition-colors z-20"
-                      >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="white">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+            {/* Legend - Right */}
+            <div className="flex-1 hidden lg:flex flex-col items-end gap-6 pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{
+                  opacity: (mapRevealed && !activeShrine) ? 1 : 0,
+                  x: (mapRevealed && !activeShrine) ? 0 : 30
+                }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="flex flex-col items-end gap-8"
+              >
+                <div className="flex flex-col items-end gap-2">
+                  <span className="text-[10px] uppercase tracking-[0.3em] font-bold mb-2" style={{ color: C.textLight }}>Status Guide</span>
+                  <div className="h-px w-8 mb-4" style={{ background: C.divider }} />
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-right" style={{ color: C.textMid }}>Active Center</span>
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60" style={{ backgroundColor: C.saffron }} />
+                    <span className="relative inline-flex rounded-full h-3 w-3" style={{ backgroundColor: C.saffron }} />
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-right" style={{ color: C.textLight }}>Upcoming Shrine</span>
+                  <span className="w-3 h-3 rounded-full" style={{ backgroundColor: "rgba(217,122,29,0.35)", border: `1.5px solid ${C.saffron}` }} />
+                </div>
+
+                <div className="mt-8 pt-8 border-t border-dashed" style={{ borderColor: C.divider }}>
+                  <p className="text-[9px] text-right italic leading-relaxed max-w-[140px]" style={{ color: C.textLight }}>
+                    We are continuously expanding our presence to bring sacred traditions closer to you.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 mt-24">
-          <div className="flex flex-wrap items-center justify-between gap-12 pt-16 border-t" style={{ borderColor: C.divider }}>
+      {/* Below-fold content */}
+      <section className="relative pt-8 pb-4 px-6" style={{ backgroundColor: C.bg }}>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: `radial-gradient(ellipse 70% 50% at 50% 0%, ${C.bgDeep}, transparent)` }}
+        />
+        <div className="relative z-10 max-w-[1400px] mx-auto">
+          <div className="flex flex-wrap items-center justify-between gap-12 pt-8 border-t" style={{ borderColor: C.divider }}>
             <div className="max-w-md">
               <h3 className="text-3xl font-bold leading-tight" style={{ color: C.text }}>
-                Sacred blessings, <span style={{ color: C.saffron }} className="italic font-light">carried with devotion.</span>
+                Sacred blessings,{" "}
+                <span style={{ color: C.saffron }} className="italic font-light">carried with devotion.</span>
               </h3>
             </div>
             <div className="flex gap-16">
@@ -374,6 +450,66 @@ export const SacredMap = () => {
           </div>
         </div>
       </section>
+
+      {/* Active Shrine Card — Fixed, centered */}
+      <div className="fixed inset-0 pointer-events-none flex items-center justify-center z-[200]">
+        <AnimatePresence mode="wait">
+          {activeShrine && (
+            <motion.div
+              key="shrine-card"
+              initial={{ opacity: 0, scale: 0.75, x: 0, y: 24, filter: "blur(12px)" }}
+              animate={{ opacity: 1, scale: 1, x: 0, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 0.75, x: 0, y: 24, filter: "blur(12px)" }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="pointer-events-auto w-64 aspect-square bg-black relative rounded-[2.5rem] overflow-hidden group border border-white/5 lg:translate-x-48"
+              style={{ boxShadow: "0 60px 120px rgba(0,0,0,0.7), 0 0 0 1px rgba(217,122,29,0.1)" }}
+            >
+              <Link href={`/shrine/${activeShrine.id}`} className="block w-full h-full cursor-pointer">
+                <Video
+                  src="/herosec.mp4"
+                  containerClassName="absolute inset-0 w-full h-full"
+                  className="opacity-40 scale-[2] group-hover:scale-125 transition-transform duration-1000"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: `radial-gradient(ellipse at bottom, ${C.saffron}20 0%, transparent 70%), linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)` }}
+                />
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+                  <motion.span
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 }}
+                    className="text-[8px] uppercase tracking-[0.45em] text-white/40 font-bold mb-3"
+                  >
+                    {activeShrine.type}
+                  </motion.span>
+                  <motion.h4
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.22 }}
+                    className="text-2xl font-bold text-white leading-tight mb-6"
+                  >
+                    {activeShrine.name}
+                  </motion.h4>
+                  <div className="transition-all duration-500">
+                    <span className="text-[7px] uppercase tracking-widest text-white/90 border border-white/15 px-4 py-2 rounded-full backdrop-blur-md bg-white/5">
+                      Explore Story →
+                    </span>
+                  </div>
+                </div>
+              </Link>
+              <button
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); setActiveShrine(null); }}
+                className="absolute top-4 right-4 p-2 rounded-full backdrop-blur-md hover:bg-white/15 transition-all duration-300 z-20 border border-white/10 bg-white/5"
+              >
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="white">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </>
   );
 };
