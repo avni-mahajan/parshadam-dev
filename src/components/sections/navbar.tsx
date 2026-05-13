@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,14 +23,16 @@ export const Navbar = () => {
       )}
     >
       <div className="w-full px-6 md:px-10 flex items-center justify-start">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
-          className="text-2xl md:text-3xl text-white font-medium tracking-[0.3em] uppercase font-[family-name:var(--font-eb-garamond)]"
-        >
-          Parshadam
-        </motion.div>
+        <Link href="/">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="text-2xl md:text-3xl font-medium tracking-[0.3em] uppercase font-[family-name:var(--font-eb-garamond)] text-[#FF8C00] drop-shadow-[0_2px_10px_rgba(255,140,0,0.3)]"
+          >
+            Parshadam
+          </motion.div>
+        </Link>
       </div>
     </nav>
   );

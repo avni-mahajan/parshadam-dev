@@ -2,8 +2,10 @@
 
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Video } from "@/components/ui/video";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Volume2, VolumeX } from "lucide-react";
+import { Magnetic } from "@/components/ui/magnetic";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -12,13 +14,13 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-import { Magnetic } from "@/components/ui/magnetic";
 
 export const Hero = () => {
   const containerRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const [isMuted, setIsMuted] = React.useState(true);
 
   useGSAP(() => {
     ScrollTrigger.create({
@@ -51,11 +53,6 @@ export const Hero = () => {
       backdropFilter: "blur(20px)",
       ease: "power2.inOut"
     }, 0);
-
-    tl.to(videoContainerRef.current, {
-      scale: 1.1,
-      ease: "none"
-    }, 0);
   }, { scope: containerRef });
 
   return (
@@ -63,10 +60,11 @@ export const Hero = () => {
       {/* Background Video */}
       <div ref={videoContainerRef} className="absolute inset-0 w-full h-full">
         <Video
-          src="/herosec.mp4"
+          src="/herosec3.mp4"
           containerClassName="absolute inset-0 z-0 h-full w-full"
-          className="scale-[1.2]"
+          className=""
           objectFit="cover"
+          muted={isMuted}
           overlay={
             <>
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-[#0F1A15]/90" />
@@ -76,6 +74,22 @@ export const Hero = () => {
             </>
           }
         />
+      </div>
+
+      {/* Top Right Controls */}
+      <div className="absolute top-10 right-10 z-50">
+        <Magnetic strength={0.2}>
+          <button 
+            onClick={() => setIsMuted(!isMuted)}
+            className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-black/20 backdrop-blur-md hover:border-white/40 transition-all duration-500 group"
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5 text-white/60 group-hover:text-white transition-colors" />
+            ) : (
+              <Volume2 className="w-5 h-5 text-white group-hover:text-primary transition-colors" />
+            )}
+          </button>
+        </Magnetic>
       </div>
 
       <div ref={textRef} className="container relative z-10 mx-auto px-6 text-center">
@@ -115,14 +129,17 @@ export const Hero = () => {
         {/* Bottom Right CTA */}
         <div className="absolute -bottom-36 right-0 md:right-10 z-20">
           <Magnetic strength={0.3}>
-            <button className="group flex items-center gap-8 text-white/70 hover:text-white transition-all duration-700">
+            <Link 
+              href="/journey"
+              className="group flex items-center gap-8 text-white/70 hover:text-white transition-all duration-700"
+            >
               <span className="text-[11px] uppercase tracking-[0.6em] font-medium border-b border-white/5 pb-3 group-hover:border-accent/50 group-hover:text-accent transition-all duration-700">
-                explore the origins
+                explore the journey
               </span>
               <div className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all duration-700">
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:text-accent" />
               </div>
-            </button>
+            </Link>
           </Magnetic>
         </div>
 
