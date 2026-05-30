@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface VideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
@@ -26,7 +26,6 @@ export const Video = ({
   playsInline = true,
   ...props
 }: VideoProps) => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -47,6 +46,32 @@ export const Video = ({
     }
   }, [muted]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (autoPlay) {
+            video.play().catch(() => {
+              // Ignore browser autoplay blocks on scroll
+            });
+          }
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [autoPlay]);
+
   const aspectStyles: Record<string, string> = {
     "16/9": "aspect-video",
     "4/3": "aspect-[4/3]",
@@ -58,7 +83,7 @@ export const Video = ({
   return (
     <div
       className={cn(
-        "relative overflow-hidden bg-muted/20",
+        "relative overflow-hidden",
         aspectStyles[aspectRatio],
         containerClassName
       )}
@@ -69,25 +94,17 @@ export const Video = ({
         src={src}
         poster={poster}
         autoPlay={autoPlay}
+        muted={muted}
         loop={loop}
+        preload="auto"
         playsInline={playsInline}
-        onLoadedData={() => setIsLoaded(true)}
-        onCanPlay={() => setIsLoaded(true)}
         className={cn(
-          "h-full w-full transition-opacity duration-700",
+          "h-full w-full",
           objectFit === "cover" ? "object-cover" : "object-contain",
-          isLoaded ? "opacity-100" : "opacity-0",
           className
         )}
         {...props}
       />
-
-      {/* Skeleton / Placeholder */}
-      {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted animate-pulse">
-          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-        </div>
-      )}
 
       {/* Custom Overlay */}
       {overlay && (

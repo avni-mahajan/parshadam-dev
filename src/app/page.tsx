@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/hero";
 import { Purpose } from "@/components/sections/purpose";
 import { SacredMap } from "@/components/sections/sacred-map";
 import { FaithSelection } from "@/components/sections/faith-selection";
+import { CTA } from "@/components/sections/cta";
 import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         
         <SacredMap />
         <FaithSelection />
+        <CTA />
         <Footer />
       </div>
     </main>

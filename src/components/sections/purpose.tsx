@@ -43,9 +43,10 @@ export const Purpose = () => {
   const sectionRef = useRef(null);
   const [activeStep, setActiveStep] = useState(0);
   const [mounted, setMounted] = useState(false);
-
-  useEffect(() => { setMounted(true); }, []);
-
+  useEffect(() => { 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setMounted(true); 
+  }, []);
   const { scrollYProgress } = useScroll({ 
     target: mounted ? sectionRef : undefined, 
     offset: ["start start", "end end"] 

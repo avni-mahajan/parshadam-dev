@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cinzel, Outfit, Akaya_Kanadaka, EB_Garamond, Lavishly_Yours } from "next/font/google";
 import "./globals.css";
-
+import "@/styles/theme.css";
 const cinzel = Cinzel({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -46,6 +46,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/herosec3.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href="/herosec.mp4" as="video" type="video/mp4" />
+      </head>
       <body className={`${outfit.variable} ${cinzel.variable} ${akaya.variable} ${ebGaramond.variable} ${lavishly.variable} antialiased font-sans`}>
         <SmoothScroll>{children}</SmoothScroll>
       </body>

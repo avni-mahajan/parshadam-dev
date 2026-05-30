@@ -20,7 +20,67 @@ export const Hero = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const wasUnmutedBeforeScrollRef = useRef(false);
+  const isMutedRef = useRef(true);
   const [isMuted, setIsMuted] = React.useState(true);
+
+  React.useEffect(() => {
+    isMutedRef.current = isMuted;
+  }, [isMuted]);
+
+  const pauseHeroVideo = () => {
+    const video = videoContainerRef.current?.querySelector("video");
+    if (!video) return;
+    video.muted = true;
+    video.pause();
+  };
+
+  const resumeHeroVideo = () => {
+    const video = videoContainerRef.current?.querySelector("video");
+    if (!video) return;
+    video.muted = false;
+    video.play().catch(() => {
+      video.muted = true;
+    });
+  };
+
+  React.useEffect(() => {
+    // Check if user has previously set mute preference
+    const saved = localStorage.getItem("hero-video-muted");
+    if (saved === "false") {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setIsMuted(false);
+      return;
+    } else if (saved === "true") {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      setIsMuted(true);
+      return;
+    }
+
+    // Otherwise, auto-unmute on first user engagement
+    const handleInteraction = () => {
+      setIsMuted(false);
+      cleanup();
+    };
+
+    const cleanup = () => {
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
+    };
+
+    window.addEventListener("click", handleInteraction);
+    window.addEventListener("touchstart", handleInteraction);
+    window.addEventListener("mousemove", handleInteraction);
+
+    return cleanup;
+  }, []);
+
+  const toggleMute = () => {
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    localStorage.setItem("hero-video-muted", String(nextMuted));
+  };
 
   useGSAP(() => {
     ScrollTrigger.create({
@@ -29,6 +89,17 @@ export const Hero = () => {
       end: "bottom top",
       pin: true,
       pinSpacing: false,
+      onLeave: () => {
+        wasUnmutedBeforeScrollRef.current = !isMutedRef.current;
+        setIsMuted(true);
+        pauseHeroVideo();
+      },
+      onEnterBack: () => {
+        if (wasUnmutedBeforeScrollRef.current) {
+          setIsMuted(false);
+          resumeHeroVideo();
+        }
+      },
     });
 
     const tl = gsap.timeline({
@@ -44,13 +115,11 @@ export const Hero = () => {
       y: -150,
       opacity: 0,
       scale: 0.95,
-      filter: "blur(10px)",
       ease: "power1.inOut"
     }, 0);
 
     tl.to(overlayRef.current, {
       opacity: 1,
-      backdropFilter: "blur(20px)",
       ease: "power2.inOut"
     }, 0);
   }, { scope: containerRef });
@@ -80,7 +149,7 @@ export const Hero = () => {
       <div className="absolute top-10 right-10 z-50">
         <Magnetic strength={0.2}>
           <button 
-            onClick={() => setIsMuted(!isMuted)}
+            onClick={toggleMute}
             className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-black/20 backdrop-blur-md hover:border-white/40 transition-all duration-500 group"
           >
             {isMuted ? (

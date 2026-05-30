@@ -61,12 +61,12 @@ export const SacredMap = () => {
       scrollTrigger: {
         trigger: sectionRef.current,
         start: "top top",
-        end: "+=240%",        // pin duration = 2.4x viewport height
+        end: "+=120%",        // pin duration = 1.2x viewport height
         pin: true,
         pinSpacing: true,
-        scrub: 1.5,
+        scrub: 1.0,
         onUpdate: (self) => {
-          const reveal = self.progress > 0.58;
+          const reveal = self.progress > 0.25;
           if (reveal !== mapRevealedRef.current) {
             mapRevealedRef.current = reveal;
             setMapRevealed(reveal);
@@ -75,36 +75,35 @@ export const SacredMap = () => {
       },
     });
 
-    // Phase 1 (0 → 0.4): hero text dissolves upward
+    // Phase 1 (0 → 0.3): hero text dissolves upward quickly
     tl.to(heroTextRef.current, {
-      y: -70,
+      y: -50,
       opacity: 0,
       scale: 0.95,
-      filter: "blur(10px)",
       ease: "power3.inOut",
-      duration: 0.5,
+      duration: 0.3,
     }, 0);
 
-    // Phase 2 (0.3 → 0.7): video dims — stays as living background
+    // Phase 2 (0.1 → 0.5): video dims
     tl.to(videoRef.current, {
       opacity: 0.35,
       ease: "power2.inOut",
-      duration: 0.6,
-    }, 0.3);
+      duration: 0.4,
+    }, 0.1);
 
-    // Phase 2 (0.35 → 0.75): warm sand overlay blooms
+    // Phase 2 (0.15 → 0.55): warm sand overlay blooms
     tl.to(warmOverlayRef.current, {
       opacity: 1,
       ease: "power2.inOut",
-      duration: 0.55,
-    }, 0.35);
+      duration: 0.4,
+    }, 0.15);
 
-    // Phase 3 (0.52 → 1): map layer assembles from center
+    // Phase 3 (0.2 → 1.0): map layer assembles instantly
     tl.fromTo(
       mapLayerRef.current,
-      { opacity: 0, scale: 0.88, y: 50, filter: "blur(24px)" },
-      { opacity: 1, scale: 1, y: 0, filter: "blur(0px)", ease: "expo.out", duration: 0.7 },
-      0.52
+      { opacity: 0, scale: 0.92, y: 30 },
+      { opacity: 1, scale: 1, y: 0, ease: "power2.out", duration: 0.8 },
+      0.2
     );
   }, { scope: sectionRef, dependencies: [] });
 
@@ -163,8 +162,8 @@ export const SacredMap = () => {
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
             className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-tight tracking-tight text-white drop-shadow-2xl mb-8 max-w-4xl"
             style={{ fontFamily: "var(--font-eb-garamond, Georgia, serif)" }}
