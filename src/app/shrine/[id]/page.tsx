@@ -9,7 +9,7 @@ import { Footer } from "@/components/sections/footer";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Sparkles, Heart, Bell, Calendar, Clock, MapPin, Feather, Compass, CheckCircle } from "lucide-react";
+import { ArrowLeft, Sparkles, Heart, Bell, Calendar, Clock, MapPin, Feather, Compass, CheckCircle, Sun, Moon, Flame, Infinity } from "lucide-react";
 
 export default function ShrinePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -324,6 +324,123 @@ export default function ShrinePage({ params }: { params: Promise<{ id: string }>
                     ))}
                   </div>
                 </div>
+              </article>
+
+              {/* Sacred Parshads - Devotees Section */}
+              <article className="space-y-8 bg-gradient-to-br from-[#1E4D3D]/5 to-[#D97A1D]/5 border border-[#1E4D3D]/10 rounded-3xl p-8 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-20 bg-[#E5B93D] pointer-events-none" />
+                
+                <div className="flex items-center gap-3">
+                  <Sparkles className="w-5 h-5 text-[#D97A1D]" />
+                  <h3 className="text-xs uppercase tracking-widest text-[#1E4D3D] font-bold">Sacred Parshads - Devotees of {shrine.name}</h3>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {shrine.parshads?.map((parshad, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: idx * 0.2 }}
+                      className="bg-white/60 backdrop-blur-sm border border-[#D97A1D]/10 rounded-2xl p-6 space-y-4 hover:border-[#D97A1D]/30 transition-all duration-500"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h4 className="text-lg font-cinzel text-[#1E4D3D]">{parshad.name}</h4>
+                          <p className="text-xs uppercase tracking-wider text-[#D97A1D] font-semibold mt-1">{parshad.role}</p>
+                        </div>
+                        <div className="text-right">
+                          <p className="text-[10px] uppercase tracking-wider text-[#7A9278] font-semibold">{parshad.yearsOfService}</p>
+                          <p className="text-[8px] text-[#7A9278]/60">of service</p>
+                        </div>
+                      </div>
+                      
+                      <p className="text-sm font-serif-lux font-light text-[#2A2A22]/80 leading-relaxed italic">
+                        "{parshad.story}"
+                      </p>
+                      
+                      <div className="flex items-start gap-2 pt-3 border-t border-[#D97A1D]/10">
+                        <Sparkles className="w-3 h-3 text-[#E5B93D] flex-shrink-0 mt-0.5" />
+                        <p className="text-xs font-serif-lux text-[#2A2A22]/70 leading-relaxed">
+                          <span className="font-semibold text-[#1E4D3D]">Sacred Connection:</span> {parshad.specialConnection}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </article>
+
+              {/* Spiritual Significance */}
+              <article className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <Infinity className="w-5 h-5 text-[#D97A1D]" />
+                  <h3 className="text-xs uppercase tracking-widest text-[#1E4D3D] font-bold">Spiritual Significance</h3>
+                </div>
+                <p className="text-base font-serif-lux font-light text-[#2A2A22]/80 leading-relaxed tracking-wide text-justify">
+                  {shrine.spiritualSignificance}
+                </p>
+              </article>
+
+              {/* Daily Prayers */}
+              <article className="space-y-8 bg-[#F6EFE3]/40 border border-[#D97A1D]/10 rounded-3xl p-8">
+                <h3 className="text-xs uppercase tracking-widest text-[#1E4D3D] font-bold mb-6">Sacred Daily Prayers</h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Sun className="w-4 h-4 text-[#D97A1D]" />
+                      <h4 className="text-sm font-semibold text-[#1E4D3D]">Morning Prayer</h4>
+                    </div>
+                    <div className="bg-white/60 backdrop-blur-sm border border-[#D97A1D]/10 rounded-xl p-4">
+                      <p className="text-lg font-serif-lux text-[#2A2A22] leading-relaxed">{shrine.morningPrayer}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Moon className="w-4 h-4 text-[#D97A1D]" />
+                      <h4 className="text-sm font-semibold text-[#1E4D3D]">Evening Prayer</h4>
+                    </div>
+                    <div className="bg-white/60 backdrop-blur-sm border border-[#D97A1D]/10 rounded-xl p-4">
+                      <p className="text-lg font-serif-lux text-[#2A2A22] leading-relaxed">{shrine.eveningPrayer}</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              {/* Sacred Symbol & Deity Form */}
+              <article className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="bg-gradient-to-br from-[#E5B93D]/10 to-[#D97A1D]/10 border border-[#E5B93D]/20 rounded-2xl p-6 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Flame className="w-5 h-5 text-[#E5B93D]" />
+                      <h4 className="text-xs uppercase tracking-widest text-[#1E4D3D] font-bold">Sacred Symbol</h4>
+                    </div>
+                    <p className="text-base font-serif-lux font-medium text-[#2A2A22]">{shrine.sacredSymbol}</p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-[#1E4D3D]/10 to-[#7A9278]/10 border border-[#1E4D3D]/20 rounded-2xl p-6 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Heart className="w-5 h-5 text-[#1E4D3D]" />
+                      <h4 className="text-xs uppercase tracking-widest text-[#1E4D3D] font-bold">Deity Form</h4>
+                    </div>
+                    <p className="text-base font-serif-lux font-medium text-[#2A2A22]">{shrine.deityForm}</p>
+                  </div>
+                </div>
+              </article>
+
+              {/* Blessing Power */}
+              <article className="space-y-6 bg-gradient-to-r from-[#D97A1D]/5 via-[#E5B93D]/5 to-[#D97A1D]/5 border border-[#D97A1D]/15 rounded-3xl p-8 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(229,185,61,0.05)_0%,transparent_70%)] pointer-events-none" />
+                
+                <div className="flex items-center gap-3">
+                  <Sparkles className="w-5 h-5 text-[#E5B93D]" />
+                  <h3 className="text-xs uppercase tracking-widest text-[#1E4D3D] font-bold">Divine Blessing Power</h3>
+                </div>
+                <p className="text-base font-serif-lux font-light text-[#2A2A22]/90 leading-relaxed tracking-wide text-justify">
+                  {shrine.blessingPower}
+                </p>
               </article>
 
             </div>

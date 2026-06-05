@@ -104,20 +104,20 @@ export const sanataniShrines: FaithShrine[] = [
     deity: "Lord Jagannath — Lord of the Universe",
     location: "Puri",
     state: "Odisha",
-    tagline: "The universe resides in his infinite gaze.",
+    tagline: "The Lord of the Universe, revered for compassion, devotion, and divine grace.",
     shloka:
-      "नीलाद्रिनिलये नित्यं नीलमेघसमप्रभ। नीलकण्ठप्रियः श्रीमान् जगन्नाथः प्रसीदतु॥",
+      "जगन्नाथ स्वामी नयनपथगामी भवतु मे ॥",
     slokaMeaning:
-      "He who dwells on the Blue Mountain, who shines like the blue cloud, beloved of Neelkantha — may Lord Jagannath, the gracious, be ever pleased.",
+      "O Lord of the Universe, may you ever come within my sight.",
     description:
-      "One of the four sacred Dhams of India, Shri Jagannath Puri holds the divine cosmic form of Lord Vishnu. The legendary Rath Yatra — the grand chariot festival — draws millions who believe even a single glimpse of the Lord bestows liberation from the cycle of birth and death.",
+      "The Lord of the Universe, revered for compassion, devotion, and divine grace.",
     legend:
       "Lord Jagannath's form is deliberately unfinished — no feet, no hands fully formed. When King Indradyumna commissioned the divine artisan Vishwakarma to craft the Lord's idol, Vishwakarma set one absolute condition: no one may enter until the work is complete. Overcome with anticipation, the King opened the doors early. The idol stood — unfinished, yet radiating an unearthly completeness. As if the Lord himself had chosen this form to remind us: divinity transcends the need for perfection.",
     offerings: [
-      "Mahaprasad — rice, dal, and vegetables cooked in 56 earthen pots stacked over sacred fire",
-      "Chhappan Bhog — 56 sacred food preparations offered at the divine altar",
-      "Tulsi garland touched to the deity's chest",
-      "Sacred flower petals swept from the sanctum floor",
+      "Devotion and faith",
+      "Family harmony",
+      "Spiritual growth",
+      "Divine grace",
     ],
     timings:
       "Open from 5:00 AM to 12:00 PM and 4:00 PM to 8:00 PM. Entry for Hindus only.",
@@ -136,24 +136,24 @@ export const sanataniShrines: FaithShrine[] = [
   },
   {
     id: "maa-mangla",
-    name: "Maa Mangla",
-    deity: "Goddess Mangla — Divine Mother of Auspiciousness",
-    location: "Kakatpur, Puri District",
+    name: "Maa Mangala",
+    deity: "Goddess Mangala — Divine Mother of Auspiciousness",
+    location: "Kakatpur",
     state: "Odisha",
-    tagline: "She who blesses every sacred beginning.",
+    tagline: "The goddess of auspicious beginnings, prosperity, and divine guidance.",
     shloka:
-      "सर्वमंगलमांगल्ये शिवे सर्वार्थसाधिके। शरण्ये त्र्यम्बके गौरि नारायणि नमोऽस्तुते॥",
+      "या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता । नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः ॥",
     slokaMeaning:
-      "O Goddess, auspiciousness of all auspicious things, fulfiller of every desire, O Gauri — to you, Narayani, I bow in surrender.",
+      "Salutations to the Goddess present in all beings as pure power. Bow to her, bow to her, bow to her — again and again.",
     description:
-      "Maa Mangla, enshrined at Kakatpur near Puri, is believed to have guided Lord Jagannath himself in a vision to reveal his divine form to the world. She is the eternal mother who consecrates every beginning — before any sacred ceremony, pilgrims seek her blessing first.",
+      "The goddess of auspicious beginnings, prosperity, and divine guidance.",
     legend:
       "King Indradyumna received a divine dream in which Maa Mangla personally directed him to the sacred log of Daru wood floating on the ocean — the wood from which Lord Jagannath's form was to be carved. Every twelve years, during the sacred Nabakalebara ceremony — the renewal of Jagannath's form — it is Maa Mangla who is consulted first, making her the eternal divine counsellor of Puri.",
     offerings: [
-      "Sacred red sindoor applied to the goddess's feet",
-      "Fragrant red hibiscus flower garlands",
-      "Freshly made khichdi prasad cooked in pure ghee",
-      "Mango leaf torans blessed in the sanctum",
+      "Prosperity",
+      "Success in new endeavors",
+      "Auspicious beginnings",
+      "Divine guidance",
     ],
     timings: "Open daily from 5:00 AM to 8:30 PM. Grand aarti at dawn and dusk.",
     festivals: "Navratri, Durga Puja, Nabakalebara",
@@ -171,24 +171,24 @@ export const sanataniShrines: FaithShrine[] = [
   },
   {
     id: "maa-chamunda-devi",
-    name: "Maa Chamunda Devi",
+    name: "Chamunda Devi",
     deity: "Maa Chamunda — Fierce Goddess of the Dhauladhar",
     location: "Kangra District",
     state: "Himachal Pradesh",
-    tagline: "Fierce grace descends from Himalayan heights.",
+    tagline: "The fierce protector who destroys negativity and grants strength.",
     shloka:
       "या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥",
     slokaMeaning:
       "Salutations to the Goddess present in all beings as pure power. Bow to her, bow to her, bow to her — again and again.",
     description:
-      "Nestled within the Dhauladhar ranges of Himachal Pradesh, Maa Chamunda Devi is one of the most revered Shakti shrines of North India. She is the fierce mother — destroyer of ignorance and evil, and the fiercest protector of those who surrender to her with pure hearts.",
+      "The fierce protector who destroys negativity and grants strength.",
     legend:
       "After the mighty demons Chanda and Munda threatened the cosmic order, the Goddess Durga manifested in her terrifying form — Chamunda — and slew them both. Pleased by her fierce compassion, Lord Brahma named her Chamunda. She chose the Kangra hills as her eternal abode, promising all who climb these mountains with faith that she would remove every obstacle from their path.",
     offerings: [
-      "Red chunri and bangles offered at the deity's feet",
-      "Sindoor and kumkum sacred to the goddess",
-      "Coconut blessed at the inner sanctum fire",
-      "Sacred spring water from the Himalayan source",
+      "Protection",
+      "Courage",
+      "Resilience",
+      "Victory over challenges",
     ],
     timings:
       "Open from 5:00 AM to 9:00 PM. Special morning aarti at 6:00 AM.",
@@ -207,24 +207,24 @@ export const sanataniShrines: FaithShrine[] = [
   },
   {
     id: "chintpurni",
-    name: "Chintpurni",
+    name: "Maa Chintpurni",
     deity: "Maa Chintpurni — She Who Dissolves Every Worry",
     location: "Una District",
     state: "Himachal Pradesh",
-    tagline: "Leave every burden at her sacred feet.",
+    tagline: "The Divine Mother who removes worries and grants peace to her devotees.",
     shloka:
-      "जय माता दी। माँ चिंतपूर्णी, सब चिंता हरो। कृपा करो, आशीष भरो।",
+      "सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके । शरण्ये त्र्यम्बके गौरी नारायणि नमोऽस्तु ते ॥",
     slokaMeaning:
-      "Victory to the Divine Mother. O Maa Chintpurni — take away all worries. Grant your grace and fill every heart with your blessings.",
+      "O Goddess, the most auspicious of all auspicious beings, O Shiva of all fulfillments, O Gauri, the refuge of the three-eyed one — to you, Narayani, I bow.",
     description:
-      "Maa Chintpurni — she who fulfills all worries — is a Chhinnamasta manifestation of Shakti at the Shivalik foothills. Millions arrive here carrying the weight of life's heaviest moments, and every single one leaves lighter. The Goddess has promised that anyone who surrenders their troubles here, she absorbs them herself.",
+      "The Divine Mother who removes worries and grants peace to her devotees.",
     legend:
       "A devoted woman, broken by grief and unable to bear her family's suffering, sat at this very spot and prayed without rest. The Goddess appeared and made her a sacred promise: whoever comes to this place and truly surrenders their worry, I will take it as my own. The temple marks where the Goddess's celestial feet (pindis) touched the earth — and every pilgrim who walks this ground walks away with a lighter soul.",
     offerings: [
-      "Sacred laddoo prasad from the temple kitchen",
-      "Blue lotus flower placed before the pindis",
-      "A wish thread tied at the divine sacred tree",
-      "Sacred ash from the eternal fire ceremony",
+      "Relief from worries",
+      "Peace of mind",
+      "Family well-being",
+      "Fulfillment of wishes",
     ],
     timings:
       "Open from 4:30 AM to 9:30 PM. Aarti at 5:00 AM and 8:30 PM.",
@@ -243,24 +243,24 @@ export const sanataniShrines: FaithShrine[] = [
   },
   {
     id: "jawali-ji",
-    name: "Jawali Ji",
-    deity: "Maa Jawala Ji — Goddess of the Eternal Sacred Flame",
+    name: "Jwala Ji",
+    deity: "Maa Jwala Ji — Goddess of the Eternal Sacred Flame",
     location: "Kangra District",
     state: "Himachal Pradesh",
-    tagline: "An eternal flame that no force on earth can extinguish.",
+    tagline: "Home to the eternal sacred flame, symbolizing divine power and energy.",
     shloka:
-      "ज्वाला मुखे सदा देवि ज्वालाज्वलित विग्रहे। महादेव प्रिये देवि सर्वपापहरे नमः॥",
+      "ज्वालामुख्यै नमस्तुभ्यं सर्वसिद्धिप्रदायिनि ॥",
     slokaMeaning:
-      "O Goddess who dwells in the sacred flame, whose form is ablaze with divine fire, O beloved of Mahadev, destroyer of all sins — to you I bow.",
+      "Salutations to the Goddess of the flame, bestower of all perfection.",
     description:
-      "Jawala Ji (Jwalamukhi) is a unique Shakti Pitha where no carved idol is worshipped — the Goddess manifests herself as nine eternal natural flames that have burned for thousands of years without any external fuel. No science can explain them. No force has ever extinguished them. They simply burn — because the Goddess wills it.",
+      "Home to the eternal sacred flame, symbolizing divine power and energy.",
     legend:
       "This is one of the 51 Shakti Pithas — where the tongue of Goddess Sati fell as Lord Vishnu divided her body after her self-immolation. The flames here are not ordinary fire; they are the living breath of the Goddess herself. Emperor Akbar once dispatched armies to divert river water and extinguish the flames — they burned on, unchanged. Humbled, he offered a gold umbrella. It turned to a different metal — an offering the Goddess chose to transform, not to accept with pride.",
     offerings: [
-      "Pure cow ghee lamp offered before the nine eternal flames",
-      "Gold-leaf garland draped at the sacred flame pillar",
-      "Sacred incense sticks lit from the eternal fire",
-      "Vibhuti — sacred ash collected from the eternal flame",
+      "Courage and strength",
+      "Protection from obstacles",
+      "Spiritual transformation",
+      "Inner confidence",
     ],
     timings:
       "Open from 5:00 AM to 10:00 PM. Most mystical experience at night when flames glow visibly.",

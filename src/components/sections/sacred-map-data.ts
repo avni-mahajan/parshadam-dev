@@ -1,3 +1,11 @@
+export type Parshad = {
+  name: string;
+  role: string;
+  story: string;
+  yearsOfService: string;
+  specialConnection: string;
+};
+
 export type Shrine = {
   id: string;
   name: string;
@@ -17,6 +25,14 @@ export type Shrine = {
   image: string;
   available: boolean;
   coordinates: [number, number];
+  // New spiritual elements
+  parshads: Parshad[];
+  morningPrayer: string;
+  eveningPrayer: string;
+  spiritualSignificance: string;
+  sacredSymbol: string;
+  deityForm: string;
+  blessingPower: string;
 };
 
 export const shrines: Shrine[] = [
@@ -48,6 +64,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [70.4013, 20.887],
+    parshads: [
+      {
+        name: "Ramesh Bhai",
+        role: "Head Priest",
+        story: "A descendant of priests who have served Somnath for 12 generations. His family has maintained the eternal flame through the temple's destruction and rebirth.",
+        yearsOfService: "35 years",
+        specialConnection: "Personally performs the Somnath Som Ganga Abhishekam every morning at sunrise"
+      },
+      {
+        name: "Lakshmi Devi",
+        role: "Prasad Keeper",
+        story: "She arrived as a young widow and found purpose in preparing the sacred prasad. Her hands have blessed thousands of pilgrims.",
+        yearsOfService: "22 years",
+        specialConnection: "Her traditional Somnath Dry Fruit Ladoo recipe has been passed down through her family for generations"
+      }
+    ],
+    morningPrayer: "ॐ नमः शिवाय सोमेश्वराय - Om Namah Shivaya Someshwaraya",
+    eveningPrayer: "शं नो मित्रः शर्वणीयम् - Sham no Mitrah Sharvaniyam",
+    spiritualSignificance: "Somnath represents the eternal cycle of destruction and creation. As the moon waxes and wanes, so too does life renew itself. This shrine teaches us that light always returns after darkness.",
+    sacredSymbol: "Crescent Moon on Shiva's head",
+    deityForm: "Someshwara Mahadev - Shiva as Lord of the Moon",
+    blessingPower: "Grants mental peace, emotional healing, and relief from anxiety. The lunar energy here soothes troubled minds and brings clarity to life's purpose."
   },
   {
     id: "mahakaleshwar",
@@ -77,6 +115,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1545128485-c400e7702796?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [75.7685, 23.1765],
+    parshads: [
+      {
+        name: "Pandit Vishnu Sharma",
+        role: "Bhasma Aarti Priest",
+        story: "He has performed the sacred Bhasma Aarti at 4 AM every single day for 28 years. His hands bear the sacred ash marks of thousands of blessings.",
+        yearsOfService: "28 years",
+        specialConnection: "Only priest authorized to prepare the sacred ash for the legendary Bhasma Aarti"
+      },
+      {
+        name: "Sunita Behen",
+        role: "Temple Flower Keeper",
+        story: "She walks 5 kilometers daily to gather fresh flowers for Mahakala. Her devotion began when her critically ill husband miraculously recovered after praying here.",
+        yearsOfService: "18 years",
+        specialConnection: "Personally selects and arranges flowers for the daily Shringar Darshan"
+      }
+    ],
+    morningPrayer: "ॐ महाकालाय नमः - Om Mahakalaya Namah",
+    eveningPrayer: "कालो ऽस्मि लोकक्षयकृत्प्रवृद्धो - Kalo Asmi Lokakshayakritpraviddho",
+    spiritualSignificance: "Mahakaleshwar is the only Jyotirlinga facing south - the direction of Yama, the god of death. By facing death itself, Shiva conquered it. This shrine teaches us that true liberation comes from facing our fears.",
+    sacredSymbol: "South-facing Lingam",
+    deityForm: "Mahakala - Shiva as Lord of Time",
+    blessingPower: "Conquers fear of death, grants protection from untimely demise, and liberates from the cycle of birth and death. The time-transcending energy here helps devotees overcome limitations."
   },
   {
     id: "kashi-vishwanath",
@@ -106,6 +166,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1561361513-2d000a45f0d2?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [83.0076, 25.3102],
+    parshads: [
+      {
+        name: "Pandit Gauri Shankar",
+        role: "Mangala Aarti Priest",
+        story: "Born in the lanes of Kashi, he has performed the dawn Mangala Aarti for 40 years. His voice carries the ancient Vedic chants that have echoed here for millennia.",
+        yearsOfService: "40 years",
+        specialConnection: "His family has been custodians of the sacred Ganga Jal collection at Manikarnika Ghat for 8 generations"
+      },
+      {
+        name: "Meera Devi",
+        role: "Sacred Thread Weaver",
+        story: "She learned the art of weaving sacred threads from her grandmother. Each thread she creates carries prayers for liberation (moksha).",
+        yearsOfService: "25 years",
+        specialConnection: "Weaves the sacred threads used during the Saptarishi Aarti ceremony"
+      }
+    ],
+    morningPrayer: "ॐ काशी विश्वनाथाय नमः - Om Kashi Vishwanathaya Namah",
+    eveningPrayer: "काशीं न मोक्षदायिनीं - Kashim Na Mokshadayinim",
+    spiritualSignificance: "Kashi is the city where Shiva himself whispers the Taraka mantra into the dying ear, granting instant liberation. This shrine represents the ultimate truth - that death is not an end but a return to the divine source.",
+    sacredSymbol: "Trishul (Trident)",
+    deityForm: "Vishweswara - Shiva as Lord of the Universe",
+    blessingPower: "Grants liberation (moksha), removes all karma, and ensures a peaceful transition at the end of life. The divine light here illuminates the path to ultimate freedom."
   },
   {
     id: "kedarnath",
@@ -135,6 +217,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1667932181221-14893a54a6d8?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [79.0669, 30.7352],
+    parshads: [
+      {
+        name: "Baba Kedar Nath",
+        role: "Mountain Priest",
+        story: "He survived the 2013 Kedarnath tragedy by holding onto a sacred rock for 3 days. He returned to rebuild the temple and continues serving despite losing his entire family.",
+        yearsOfService: "32 years",
+        specialConnection: "Performs the Mahabhishek with melted Himalayan snow and ghee at dawn every day"
+      },
+      {
+        name: "Rajeshwari Devi",
+        role: "Prasad Maker",
+        story: "She climbs the mountain path daily even in her 70s. Her honey is collected from wild Himalayan bees and blessed at the sanctum.",
+        yearsOfService: "30 years",
+        specialConnection: "Her family has been collecting Himalayan honey for temple offerings for 5 generations"
+      }
+    ],
+    morningPrayer: "ॐ केदारनाथाय नमः - Om Kedarnathaya Namah",
+    eveningPrayer: "नमः शिवाय पर्वतराजाय - Namah Shivaya Parvatrajaya",
+    spiritualSignificance: "Kedarnath stands where the Pandavas sought redemption. The triangular lingam represents the hump of the bull that Shiva took to test their devotion. This shrine teaches that true surrender transforms even the heaviest burdens into blessings.",
+    sacredSymbol: "Triangular Lingam",
+    deityForm: "Kedarnath - Shiva as Lord of the Mountains",
+    blessingPower: "Grants strength to overcome life's challenges, removes guilt and sin, and provides spiritual transformation. The mountain energy here helps devotees rise above worldly attachments."
   },
   {
     id: "vaishno-devi",
@@ -164,6 +268,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1590073844006-33379778ae09?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [74.9523, 32.9942],
+    parshads: [
+      {
+        name: "Shanti Devi",
+        role: "Cave Priestess",
+        story: "She has served in the sacred cave for 35 years. Pilgrims say her touch during the Atka Aarti feels like the mother's embrace.",
+        yearsOfService: "35 years",
+        specialConnection: "Performs the sacred Chunri Shringar ceremony where the mother is draped in fine red silks"
+      },
+      {
+        name: "Ramesh Kumar",
+        role: "Pindi Snan Keeper",
+        story: "His family has been collecting the sacred cave spring water for 6 generations. He knows the exact moment when the water is most pure.",
+        yearsOfService: "28 years",
+        specialConnection: "Responsible for the Pindi Snan ritual with holy spring waters that flow inside the cave"
+      }
+    ],
+    morningPrayer: "ॐ वैष्णो देव्यै नमः - Om Vaishno Devyai Namah",
+    eveningPrayer: "जय माता दी - Jai Mata Di",
+    spiritualSignificance: "The three Pindis represent Mahakali, Mahalakshmi, and Mahasaraswati - the three divine energies that created the universe. This shrine teaches that the divine mother takes many forms to protect and nurture her children.",
+    sacredSymbol: "Three Holy Pindis (Natural Rock Formations)",
+    deityForm: "Vaishnavi - Combined form of three goddesses",
+    blessingPower: "Grants motherly protection, fulfills wishes, and provides unconditional love. The divine feminine energy here nurtures and heals emotional wounds."
   },
   {
     id: "tirupati",
@@ -193,6 +319,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1608958416715-4ba8b6f3c1b6?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [79.3747, 13.6833],
+    parshads: [
+      {
+        name: "Venkatachalam",
+        role: "Suprabhata Seva Priest",
+        story: "He has been waking the Lord with sacred songs at 3 AM for 42 years. His voice is said to carry the devotion of millions.",
+        yearsOfService: "42 years",
+        specialConnection: "Lead priest for the daily Suprabhata Seva ceremony to awaken the Lord"
+      },
+      {
+        name: "Lakshmi Amma",
+        role: "Ladoo Prasad Maker",
+        story: "She learned the sacred recipe from her grandmother-in-law. Her hands have made millions of ladoos that carry the Lord's blessing.",
+        yearsOfService: "38 years",
+        specialConnection: "Head of the kitchen that prepares the legendary GI-tagged Tirupati Besan Ladoo"
+      }
+    ],
+    morningPrayer: "ॐ वेङ्कटेशाय नमः - Om Venkateshaya Namah",
+    eveningPrayer: "श्रीमन्नारायण नमो नमः - Shriman Narayana Namo Namah",
+    spiritualSignificance: "Lord Venkateswara took a loan from Kubera to marry Goddess Padmavati and remains here to repay it through devotees' offerings. This shrine teaches that even the divine accepts humble service with gratitude.",
+    sacredSymbol: "Golden Sudarshana Chakra",
+    deityForm: "Venkateswara - Vishnu as Lord of the Seven Hills",
+    blessingPower: "Fulfills sincere wishes, removes financial burdens, and grants prosperity. The divine generosity here teaches the art of giving without expectation."
   },
   {
     id: "omkareshwar",
@@ -222,6 +370,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1609137144813-f61cf1b9cf2a?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [76.1462, 22.2483],
+    parshads: [
+      {
+        name: "Narmada Prasad",
+        role: "River Priest",
+        story: "He was found as an orphan on the banks of Narmada and raised by temple priests. He considers the river his mother and the temple his home.",
+        yearsOfService: "45 years",
+        specialConnection: "Performs the Narmada River Jal Abhishekam every morning at the exact point where the river forms the OM shape"
+      },
+      {
+        name: "Gauri Bai",
+        role: "Sacred Sand Collector",
+        story: "She collects sand from the Om-point ghats at dawn when the river is most pure. Her sand is used to create Narmadeshwar Shiva Lingams.",
+        yearsOfService: "33 years",
+        specialConnection: "Her family has been creating Narmadeshwar stone tokens for 7 generations"
+      }
+    ],
+    morningPrayer: "ॐ ओंकारेश्वराय नमः - Om Omkareshwaraya Namah",
+    eveningPrayer: "ॐ नमो भगवते रुद्राय - Om Namo Bhagavate Rudraya",
+    spiritualSignificance: "The island itself is shaped like the sacred syllable OM - the primordial sound from which creation emerged. This shrine teaches that divine geometry exists in nature itself, connecting the physical and spiritual realms.",
+    sacredSymbol: "OM-shaped Island",
+    deityForm: "Omkareshwar - Shiva as Lord of the Cosmic Sound",
+    blessingPower: "Grants clarity of thought, spiritual awakening, and connection to cosmic consciousness. The sacred sound vibration here harmonizes the mind and soul."
   },
   {
     id: "trimbakeshwar",
@@ -251,6 +421,28 @@ export const shrines: Shrine[] = [
     image: "https://images.unsplash.com/photo-1598977123418-45f04b615aa0?q=80&w=1200&auto=format&fit=crop",
     available: true,
     coordinates: [73.5458, 19.9392],
+    parshads: [
+      {
+        name: "Gautam Sharma",
+        role: "Trinity Priest",
+        story: "His ancestor was Sage Gautama for whom the Godavari was released. His family has been custodians of the three-faced lingam for over 1000 years.",
+        yearsOfService: "38 years",
+        specialConnection: "Performs the Rudrabhishek using pure Godavari water collected at the exact source"
+      },
+      {
+        name: "Yashoda Devi",
+        role: "Kala Dhaga Weaver",
+        story: "She weaves the protective black cotton thread that has protected families for generations. Her hands know the ancient patterns by heart.",
+        yearsOfService: "29 years",
+        specialConnection: "Creates the blessed black cotton protection thread (Kala Dhaga) used in the Kala Dhaga Abhishekam"
+      }
+    ],
+    morningPrayer: "ॐ त्र्यम्बकेश्वराय नमः - Om Trimbakeshwaraya Namah",
+    eveningPrayer: "त्र्यम्बकं यजामहे - Tryambakam Yajamahe",
+    spiritualSignificance: "The three faces represent Brahma (creation), Vishnu (preservation), and Shiva (destruction) as one unified divine force. This shrine teaches that all cosmic forces are interconnected and work in harmony.",
+    sacredSymbol: "Three-Faced Lingam",
+    deityForm: "Trimbakeshwara - Combined form of Brahma, Vishnu, and Shiva",
+    blessingPower: "Grants balance in life, protection from negative influences, and harmony between creation, preservation, and transformation. The trinity energy here brings cosmic balance."
   }
 ];
 

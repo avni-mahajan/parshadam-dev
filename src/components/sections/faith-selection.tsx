@@ -48,7 +48,7 @@ export function FaithSelection() {
         />
       )}
 
-      <section className="pt-4 pb-16 relative overflow-hidden bg-background">
+      <section className="pt-4 pb-8 relative overflow-hidden bg-background">
         {/* Ambient glow */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -87,7 +87,7 @@ export function FaithSelection() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-muted-foreground text-sm md:text-base font-light tracking-[0.1em] max-w-2xl mx-auto leading-relaxed uppercase opacity-70"
             >
-              Select your path of faith to discover sacred shrines and parshadam from the most revered holy places.
+               Select your path of faith to discover ancient shrines and parshadam from the most revered holy places.
             </motion.p>
           </div>
 
@@ -192,7 +192,7 @@ export function FaithSelection() {
                       <div className="w-16 h-[1px] bg-accent/30 mb-5 transition-all duration-700 group-hover:w-32 group-hover:bg-accent/60" />
 
                       <p className="text-[10px] text-white/70 leading-loose max-w-[240px] font-medium tracking-[0.3em] uppercase mb-6">
-                        Discover sacred prasadam from ancient, eternal temples.
+                        Prasadam from timeless temples, blessed at the altar.
                       </p>
 
                       {/* Explore CTA */}
@@ -272,7 +272,7 @@ export function FaithSelection() {
                       <div className="w-16 h-[1px] mb-5 transition-all duration-700 group-hover:w-32" style={{ background: "rgba(255,215,0,0.4)" }} />
 
                       <p className="text-[10px] text-white/70 leading-loose max-w-[240px] font-medium tracking-[0.3em] uppercase mb-6">
-                        Receive divine blessings from sacred Gurdwaras.
+                        Blessed Karah Parshad from the Golden Temple.
                       </p>
 
                       {/* Explore CTA */}
@@ -302,7 +302,7 @@ export function FaithSelection() {
             className="text-center mt-4 mb-8"
           >
             <p className="text-[9px] uppercase tracking-[0.5em] font-medium text-muted-foreground/40">
-              Tap a card to explore sacred shrines
+               Choose your path to begin
             </p>
           </motion.div>
 

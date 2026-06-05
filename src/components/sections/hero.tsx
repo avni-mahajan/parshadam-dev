@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Video } from "@/components/ui/video";
@@ -20,69 +20,52 @@ export const Hero = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
-  const wasUnmutedBeforeScrollRef = useRef(false);
-  const isMutedRef = useRef(true);
-  const [isMuted, setIsMuted] = React.useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true); // Default to muted for initial render to avoid hydration mismatch
 
-  React.useEffect(() => {
-    isMutedRef.current = isMuted;
-  }, [isMuted]);
-
-  const pauseHeroVideo = () => {
-    const video = videoContainerRef.current?.querySelector("video");
-    if (!video) return;
-    video.muted = true;
-    video.pause();
-  };
-
-  const resumeHeroVideo = () => {
-    const video = videoContainerRef.current?.querySelector("video");
-    if (!video) return;
-    video.muted = false;
-    video.play().catch(() => {
-      video.muted = true;
-    });
-  };
-
-  React.useEffect(() => {
-    // Check if user has previously set mute preference
-    const saved = localStorage.getItem("hero-video-muted");
-    if (saved === "false") {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+  // Initialize from storage on mount
+  useEffect(() => {
+    const savedMuted = localStorage.getItem("hero-video-muted");
+    if (savedMuted === "false") {
       setIsMuted(false);
-      return;
-    } else if (saved === "true") {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    } else {
+      // Default to muted to follow browser best practices, but user can unmute
       setIsMuted(true);
-      return;
     }
-
-    // Otherwise, auto-unmute on first user engagement
-    const handleInteraction = () => {
-      setIsMuted(false);
-      cleanup();
-    };
-
-    const cleanup = () => {
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-      window.removeEventListener("mousemove", handleInteraction);
-    };
-
-    window.addEventListener("click", handleInteraction);
-    window.addEventListener("touchstart", handleInteraction);
-    window.addEventListener("mousemove", handleInteraction);
-
-    return cleanup;
   }, []);
 
+  // Save preference on change
   const toggleMute = () => {
-    const nextMuted = !isMuted;
-    setIsMuted(nextMuted);
-    localStorage.setItem("hero-video-muted", String(nextMuted));
+    const newState = !isMuted;
+    setIsMuted(newState);
+    
+    // Direct DOM manipulation for reliable unmuting in response to user click
+    if (videoRef.current) {
+      try {
+        videoRef.current.muted = newState;
+        if (!newState) {
+          videoRef.current.volume = 1;
+          videoRef.current.play().catch((err) => {
+            console.warn("Hero video play failed on unmute:", err);
+          });
+        }
+      } catch (e) {
+        console.error("Error updating DOM video element:", e);
+      }
+    }
+
+    if (typeof window !== "undefined") {
+      localStorage.setItem("hero-video-muted", String(newState));
+    }
   };
 
   useGSAP(() => {
+    const muteVideo = (muted: boolean) => {
+      if (videoRef.current) {
+        videoRef.current.muted = muted;
+      }
+    };
+
     ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top top",
@@ -90,15 +73,14 @@ export const Hero = () => {
       pin: true,
       pinSpacing: false,
       onLeave: () => {
-        wasUnmutedBeforeScrollRef.current = !isMutedRef.current;
+        muteVideo(true);
         setIsMuted(true);
-        pauseHeroVideo();
       },
       onEnterBack: () => {
-        if (wasUnmutedBeforeScrollRef.current) {
-          setIsMuted(false);
-          resumeHeroVideo();
-        }
+        const saved = typeof window !== "undefined" ? localStorage.getItem("hero-video-muted") : null;
+        const shouldMute = saved !== "false";
+        muteVideo(shouldMute);
+        setIsMuted(shouldMute);
       },
     });
 
@@ -107,7 +89,7 @@ export const Hero = () => {
         trigger: containerRef.current,
         start: "top top",
         end: "bottom top",
-        scrub: true,
+        scrub: 1,
       }
     });
 
@@ -127,9 +109,12 @@ export const Hero = () => {
   return (
     <section ref={containerRef} className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#0F1A15]">
       {/* Background Video */}
-      <div ref={videoContainerRef} className="absolute inset-0 w-full h-full">
+      {/* Dark background shown while video loads */}
+      <div className="absolute inset-0 bg-[#0F1A15]" />
+      <div ref={videoContainerRef} className="absolute inset-0 w-full h-full will-change-transform">
         <Video
-          src="/herosec3.mp4"
+          ref={videoRef}
+          src="/herosec3.mp4?v=2"
           containerClassName="absolute inset-0 z-0 h-full w-full"
           className=""
           objectFit="cover"
@@ -146,22 +131,32 @@ export const Hero = () => {
       </div>
 
       {/* Top Right Controls */}
-      <div className="absolute top-10 right-10 z-50">
+      <div className="absolute top-10 right-10 z-[60]">
         <Magnetic strength={0.2}>
-          <button 
+          <motion.button 
             onClick={toggleMute}
+            animate={isMuted ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
             className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-black/20 backdrop-blur-md hover:border-white/40 transition-all duration-500 group"
           >
             {isMuted ? (
-              <VolumeX className="w-5 h-5 text-white/60 group-hover:text-white transition-colors" />
+              <div className="relative">
+                <VolumeX className="w-5 h-5 text-white/60 group-hover:text-white transition-colors" />
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 2] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  className="absolute inset-0 bg-white/20 rounded-full"
+                />
+              </div>
             ) : (
               <Volume2 className="w-5 h-5 text-white group-hover:text-primary transition-colors" />
             )}
-          </button>
+          </motion.button>
         </Magnetic>
       </div>
 
-      <div ref={textRef} className="container relative z-10 mx-auto px-6 text-center">
+      <div ref={textRef} className="container relative z-10 mx-auto px-6 text-center will-change-transform">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -181,7 +176,7 @@ export const Hero = () => {
             <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-primary/40" />
           </motion.div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-[family-name:var(--font-eb-garamond)] font-medium leading-[1.1] tracking-tight mb-12 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)] px-4 max-w-5xl mx-auto">
+          <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-[family-name:var(--font-eb-garamond)] font-medium leading-[1.1] tracking-tight mb-12 text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.6)] px-4 max-w-5xl mx-auto will-change-transform">
             Blessings Before <span className="italic font-normal">All Else</span>
           </h1>
 
