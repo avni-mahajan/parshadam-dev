@@ -122,8 +122,7 @@ export const sanataniShrines: FaithShrine[] = [
     timings:
       "Open from 5:00 AM to 12:00 PM and 4:00 PM to 8:00 PM. Entry for Hindus only.",
     festivals: "Rath Yatra (June–July), Snana Yatra, Janmashtami, Diwali",
-    image:
-      "https://images.unsplash.com/photo-1605649487212-47bdab064df7?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/jagnnath.png",
     featured: true,
     accentColor: "#E8A020",
     orbitalLayer: 0,
@@ -157,8 +156,7 @@ export const sanataniShrines: FaithShrine[] = [
     ],
     timings: "Open daily from 5:00 AM to 8:30 PM. Grand aarti at dawn and dusk.",
     festivals: "Navratri, Durga Puja, Nabakalebara",
-    image:
-      "https://images.unsplash.com/photo-1590073844006-33379778ae09?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/maamangla.png",
     featured: false,
     accentColor: "#C2185B",
     orbitalLayer: 1,
@@ -194,7 +192,7 @@ export const sanataniShrines: FaithShrine[] = [
       "Open from 5:00 AM to 9:00 PM. Special morning aarti at 6:00 AM.",
     festivals: "Navratri (Chaitra and Sharad), Dussehra, Ashtami Puja",
     image:
-      "https://images.unsplash.com/photo-1545128485-c400e7702796?q=80&w=1200&auto=format&fit=crop",
+      "/images/chamundadevi.png",
     featured: false,
     accentColor: "#8B1A1A",
     orbitalLayer: 2,
@@ -230,7 +228,7 @@ export const sanataniShrines: FaithShrine[] = [
       "Open from 4:30 AM to 9:30 PM. Aarti at 5:00 AM and 8:30 PM.",
     festivals: "Navratri, Shravan Ashtami, Mela Chintpurni",
     image:
-      "https://images.unsplash.com/photo-1598977123418-45f04b615aa0?q=80&w=1200&auto=format&fit=crop",
+      "/images/chintpurni.png",
     featured: false,
     accentColor: "#7B1FA2",
     orbitalLayer: 1,
@@ -266,7 +264,7 @@ export const sanataniShrines: FaithShrine[] = [
       "Open from 5:00 AM to 10:00 PM. Most mystical experience at night when flames glow visibly.",
     festivals: "Navratri, Maha Ashtami, Durgashtami",
     image:
-      "https://images.unsplash.com/photo-1667932181221-14893a54a6d8?q=80&w=1200&auto=format&fit=crop",
+      "/images/jawalaji.png",
     featured: false,
     accentColor: "#F57C00",
     orbitalLayer: 2,
