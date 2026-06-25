@@ -79,12 +79,14 @@ function buildParshads(): ParshadOffer[] {
 
 const allParshads = buildParshads();
 
-const carouselProducts = allParshads.slice(0, 6).map((p) => ({
+const parshadImages = ["/images/panjiri.png", "/images/besanladdu.png", "/images/gulkand.png", "/images/dryfruit.png"];
+
+const carouselProducts = allParshads.slice(0, 6).map((p, i) => ({
   id: p.id,
   name: p.name,
   location: p.shrineName,
   description: p.tagline,
-  image: p.image,
+  image: parshadImages[i % parshadImages.length],
 }));
 
 export function ParshadSection() {
