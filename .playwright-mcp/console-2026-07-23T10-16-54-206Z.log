@@ -1,0 +1,10 @@
+[     592ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[     594ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[     594ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[     594ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[    1733ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[    1922ms] [LOG] [HMR] connected @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  120750ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  124475ms] [LOG] [Fast Refresh] done in 3735ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  124491ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  126000ms] [LOG] [Fast Refresh] done in 1510ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27

@@ -1,0 +1,14 @@
+[     287ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[     288ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[     288ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[     288ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[    1208ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[    1332ms] [LOG] [HMR] connected @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[   89606ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[   93580ms] [LOG] [Fast Refresh] done in 3980ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  107905ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[  107906ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[  107906ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[  107906ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[  108867ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  109014ms] [LOG] [HMR] connected @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27

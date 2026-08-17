@@ -1,0 +1,188 @@
+- generic [active] [ref=f25e1]:
+  - main [ref=f25e2]:
+    - generic:
+      - generic [ref=f25e3]:
+        - generic [ref=f25e4]: 🪷
+        - heading "Sanatani Shrines" [level=1] [ref=f25e5]
+      - generic [ref=f25e7]:
+        - button "Search Shrines" [ref=f25e9]
+        - button "View All" [ref=f25e14]
+        - generic [ref=f25e18]: ॐ
+    - generic:
+      - generic:
+        - generic:
+          - generic: ✦ fierce ✦
+          - heading "Shri Jagannath Puri" [level=4]
+          - paragraph: Puri
+          - paragraph: The Lord of the Universe, revered for compassion, devotion, and divine grace.
+      - generic:
+        - generic:
+          - generic: ✦ nurturing ✦
+          - heading "Maa Mangala" [level=4]
+          - paragraph: Kakatpur
+          - paragraph: The goddess of auspicious beginnings, prosperity, and divine guidance.
+      - generic:
+        - generic:
+          - generic: ✦ fierce ✦
+          - heading "Chamunda Devi" [level=4]
+          - paragraph: Kangra District
+          - paragraph: The fierce protector who destroys negativity and grants strength.
+      - generic:
+        - generic:
+          - generic: ✦ nurturing ✦
+          - heading "Maa Chintpurni" [level=4]
+          - paragraph: Una District
+          - paragraph: The Divine Mother who removes worries and grants peace to her devotees.
+      - generic:
+        - generic:
+          - generic: ✦ fierce ✦
+          - heading "Jwala Ji" [level=4]
+          - paragraph: Kangra District
+          - paragraph: Home to the eternal sacred flame, symbolizing divine power and energy.
+    - generic [ref=f25e211]:
+      - generic [ref=f25e212]:
+        - generic:
+          - generic:
+            - generic:
+              - heading "Maa Chintpurni" [level=1]
+              - paragraph: “सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके । शरण्ये त्र्यम्बके गौरी नारायणि नमोऽस्तु ते ॥”
+              - paragraph: The Divine Mother who removes worries and grants peace to her devotees.
+              - generic:
+                - generic: Relief from worries•
+                - generic: Peace of mind•
+                - generic: Family well-being•
+                - generic: Fulfillment of wishes
+              - paragraph: Una District, Himachal Pradesh
+              - generic:
+                - paragraph: ✦ Temple Offerings ✦
+                - paragraph: Sacred offerings blessed with divine grace
+                - generic:
+                  - generic:
+                    - generic [ref=f25e24] [cursor=pointer]:
+                      - generic [ref=f25e26]: Dry Fruit Prasadam
+                      - generic [ref=f25e27]: Somnath
+                      - paragraph [ref=f25e28]: Prasadam from Somnath carries the blessings of Shiva.
+                    - generic [ref=f25e34] [cursor=pointer]:
+                      - generic [ref=f25e36]: Pink Laddu Offering
+                      - generic [ref=f25e37]: Mahakaleshwar
+                      - paragraph [ref=f25e38]: Prasadam from Mahakaleshwar carries the blessings of Shiva.
+                    - generic [ref=f25e44] [cursor=pointer]:
+                      - generic [ref=f25e46]: Millet Kheer Blessing
+                      - generic [ref=f25e47]: Kashi Vishwanath
+                      - paragraph [ref=f25e48]: Prasadam from Kashi Vishwanath carries the blessings of Shiva.
+              - button "✦ Choose Maa Chintpurni ✦" [ref=f25e245]:
+                - generic [ref=f25e51]: ✦
+                - text: Choose Maa Chintpurni
+                - generic [ref=f25e52]: ✦
+        - generic:
+          - generic [ref=f25e222] [cursor=pointer]:
+            - generic [ref=f25e223]: ✦ fierce ✦
+            - heading "Chamunda Devi" [level=4] [ref=f25e246]
+            - paragraph [ref=f25e225]: Kangra District
+          - generic [ref=f25e233] [cursor=pointer]:
+            - generic [ref=f25e234]: ✦ fierce ✦
+            - heading "Jwala Ji" [level=4] [ref=f25e247]
+            - paragraph [ref=f25e236]: Kangra District
+      - generic:
+        - button "←" [ref=f25e53]
+        - button "→" [ref=f25e55]
+        - generic [ref=f25e57]:
+          - paragraph [ref=f25e58]: Choose Your Sacred Shrine
+          - generic [ref=f25e59]:
+            - button [ref=f25e60]
+            - button [ref=f25e61]
+            - button [ref=f25e62]
+            - button [ref=f25e63]
+            - button [ref=f25e64]
+    - generic [ref=f25e76]:
+      - generic [ref=f25e77]:
+        - generic [ref=f25e78]: Sacred Shrines
+        - heading "All Sanatani Shrines" [level=2] [ref=f25e82]
+        - paragraph [ref=f25e83]: Each shrine holds centuries of devotion. Tap to explore its story, blessings, and sacred offerings.
+      - generic [ref=f25e84]:
+        - generic [ref=f25e88] [cursor=pointer]:
+          - generic [ref=f25e89]: ✦ fierce ✦
+          - generic [ref=f25e94]:
+            - heading "Shri Jagannath Puri" [level=4] [ref=f25e95]
+            - paragraph [ref=f25e96]: Puri, Odisha
+            - paragraph [ref=f25e97]: “जगन्नाथ स्वामी नयनपथगामी भवतु मे ॥”
+            - paragraph [ref=f25e98]: Lord Jagannath
+            - button "View Details" [ref=f25e99]
+        - generic [ref=f25e103] [cursor=pointer]:
+          - generic [ref=f25e104]: ✦ nurturing ✦
+          - generic [ref=f25e109]:
+            - heading "Maa Mangala" [level=4] [ref=f25e110]
+            - paragraph [ref=f25e111]: Kakatpur, Odisha
+            - paragraph [ref=f25e112]: “या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता । नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः ॥”
+            - paragraph [ref=f25e113]: Goddess Mangala
+            - button "View Details" [ref=f25e114]
+        - generic [ref=f25e118] [cursor=pointer]:
+          - generic [ref=f25e119]: ✦ fierce ✦
+          - generic [ref=f25e124]:
+            - heading "Chamunda Devi" [level=4] [ref=f25e125]
+            - paragraph [ref=f25e126]: Kangra District, Himachal Pradesh
+            - paragraph [ref=f25e127]: “या देवी सर्वभूतेषु शक्तिरूपेण संस्थिता। नमस्तस्यै नमस्तस्यै नमस्तस्यै नमो नमः॥”
+            - paragraph [ref=f25e128]: Maa Chamunda
+            - button "View Details" [ref=f25e129]
+        - generic [ref=f25e133] [cursor=pointer]:
+          - generic [ref=f25e134]: ✦ nurturing ✦
+          - generic [ref=f25e139]:
+            - heading "Maa Chintpurni" [level=4] [ref=f25e140]
+            - paragraph [ref=f25e141]: Una District, Himachal Pradesh
+            - paragraph [ref=f25e142]: “सर्वमङ्गलमाङ्गल्ये शिवे सर्वार्थसाधिके । शरण्ये त्र्यम्बके गौरी नारायणि नमोऽस्तु ते ॥”
+            - paragraph [ref=f25e143]: Maa Chintpurni
+            - button "View Details" [ref=f25e144]
+        - generic [ref=f25e148] [cursor=pointer]:
+          - generic [ref=f25e149]: ✦ fierce ✦
+          - generic [ref=f25e154]:
+            - heading "Jwala Ji" [level=4] [ref=f25e155]
+            - paragraph [ref=f25e156]: Kangra District, Himachal Pradesh
+            - paragraph [ref=f25e157]: “ज्वालामुख्यै नमस्तुभ्यं सर्वसिद्धिप्रदायिनि ॥”
+            - paragraph [ref=f25e158]: Maa Jwala Ji
+            - button "View Details" [ref=f25e159]
+    - generic [ref=f25e162]:
+      - generic [ref=f25e163]:
+        - generic [ref=f25e164]:
+          - generic [ref=f25e165]: PARSHADAM.
+          - paragraph [ref=f25e166]: Dedicated to the art of sacred beginnings. We curate experiences that blend timeless tradition with modern elegance, carrying blessings from the heart of India to your home.
+        - generic [ref=f25e167]:
+          - generic [ref=f25e168]:
+            - heading "Discovery" [level=4] [ref=f25e169]
+            - list [ref=f25e170]:
+              - listitem [ref=f25e171]:
+                - link "The Vision" [ref=f25e172] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f25e173]:
+                - link "Ceremonies" [ref=f25e174] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f25e175]:
+                - link "Sacred Map" [ref=f25e176] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=f25e177]:
+            - heading "Connect" [level=4] [ref=f25e178]
+            - list [ref=f25e179]:
+              - listitem [ref=f25e180]:
+                - link "Instagram" [ref=f25e181] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f25e182]:
+                - link "LinkedIn" [ref=f25e183] [cursor=pointer]:
+                  - /url: "#"
+              - listitem [ref=f25e184]:
+                - link "Enquire" [ref=f25e185] [cursor=pointer]:
+                  - /url: "#"
+          - generic [ref=f25e186]:
+            - heading "Office" [level=4] [ref=f25e187]
+            - generic [ref=f25e188]:
+              - text: Heritage SquareNew Delhi, India
+              - generic [ref=f25e189]: hello@parshadam.com
+      - generic [ref=f25e190]:
+        - generic [ref=f25e191]:
+          - generic [ref=f25e192]: ✦
+          - paragraph [ref=f25e193]: © 2026 Parshadam. Crafted with Devotion.
+        - generic [ref=f25e194]:
+          - link "Privacy" [ref=f25e195] [cursor=pointer]:
+            - /url: "#"
+          - link "Terms" [ref=f25e196] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=f25e248] [cursor=pointer]
+  - alert [ref=f25e210]

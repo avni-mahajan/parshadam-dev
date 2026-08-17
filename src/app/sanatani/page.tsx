@@ -12,6 +12,8 @@ import gsap from "gsap";
 import { useRouter } from "next/navigation";
 
 import { sanataniShrines, type FaithShrine } from "@/components/sections/sanatani-data";
+import { allParshads } from "@/components/parshad-discovery/data";
+import type { ParshadDiscovery } from "@/components/parshad-discovery/types";
 import SacredGallery from "@/components/sections/SacredGallery";
 import { Footer } from "@/components/sections/footer";
 
@@ -53,6 +55,7 @@ function SideCard({
       data-side={side}
       className={`absolute top-1/2 -translate-y-1/2 z-[70] w-44 md:w-52 cursor-pointer touch-none pointer-events-auto ${edgeClasses}`}
       style={{ height: "70vh", top: "calc(50% + 40px)" }}
+      onPointerDown={(e) => e.stopPropagation()}
       onMouseMove={(e) => {
         const r = e.currentTarget.getBoundingClientRect();
         mouseX.set((e.clientX - r.left) / r.width);
@@ -280,7 +283,17 @@ function GridShrineCard({
 }
 
 // ─── Shrine Info Panel ────────────────────────────────────────────────
-function ShrineInfoPanel({ shrine, onChoose }: { shrine: FaithShrine; onChoose: () => void }) {
+function ShrineInfoPanel({
+  shrine,
+  parshads,
+  onChoose,
+  onParshadClick,
+}: {
+  shrine: FaithShrine;
+  parshads: ParshadDiscovery[];
+  onChoose: () => void;
+  onParshadClick: (parshad: ParshadDiscovery) => void;
+}) {
   const accent = shrine.accentColor || shrine.cosmicGlow || "#E8A020";
   return (
     <div data-shrine-info className="absolute inset-0 z-[35] pointer-events-none flex items-center justify-center px-6">
@@ -339,72 +352,135 @@ function ShrineInfoPanel({ shrine, onChoose }: { shrine: FaithShrine; onChoose: 
           {shrine.location}, {shrine.state}
         </p>
 
-        <div className="relative flex flex-col items-center mb-6" style={{ height: 220 }}>
+        <div className="relative flex flex-col items-center mb-8" style={{ height: 310 }}>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-medium mb-3"
+            className="text-[9px] md:text-[10px] uppercase tracking-[0.35em] font-medium mb-2"
             style={{ color: "#D4AF37", fontFamily: "'Cinzel', serif", textShadow: "0 1px 10px rgba(0,0,0,0.95), 0 0 12px rgba(212,175,55,0.12)" }}
           >
-            — Temple Parshads —
+            ✦&nbsp;&nbsp;Temple Offerings&nbsp;&nbsp;✦
           </motion.p>
-          <div className="relative flex items-center justify-center" style={{ perspective: "900px", height: 180, width: 340 }}>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="text-[8px] md:text-[9px] uppercase tracking-[0.25em] font-light mb-5"
+            style={{ color: "#D4AF37", fontFamily: "'Cinzel', serif", textShadow: "0 1px 8px rgba(0,0,0,0.95)" }}
+          >
+            Sacred offerings blessed with divine grace
+          </motion.p>
+          <div
+            className="relative flex items-center justify-center"
+            style={{ perspective: "1100px", height: 220, width: 440 }}
+            onPointerDown={(e) => e.stopPropagation()}
+          >
+            {/* Ambient golden ring glow behind the carousel */}
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                width: 360,
+                height: 360,
+                borderRadius: "50%",
+                border: "1px solid rgba(212,175,55,0.08)",
+                boxShadow: "0 0 60px rgba(212,175,55,0.06), 0 0 120px rgba(212,175,55,0.03), inset 0 0 60px rgba(212,175,55,0.04)",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+              }}
+            />
             <motion.div
               className="relative"
               style={{ transformStyle: "preserve-3d" }}
               animate={{ rotateY: [0, 360] }}
-              transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
             >
-              {[
-                { name: "Panjiri Parshad", image: "/images/panjiri.png" },
-                { name: "Besan Laddu Parshad", image: "/images/besanladdu.png" },
-                { name: "Gulkand Parshad", image: "/images/gulkand.png" },
-              ].map((p, i) => {
+              {parshads.slice(0, 3).map((p, i) => {
                 const angle = i * 120;
                 return (
                   <motion.div
-                    key={p.name}
-                    className="absolute pointer-events-auto cursor-pointer"
+                    key={p.id}
+                    className="absolute pointer-events-auto cursor-pointer group"
                     style={{
-                      width: 110,
-                      height: 150,
-                      left: -55,
-                      top: -75,
-                      transform: `rotateY(${angle}deg) translateZ(160px)`,
+                      width: 140,
+                      height: 195,
+                      left: -70,
+                      top: -97.5,
+                      transform: `rotateY(${angle}deg) translateZ(210px)`,
                       backfaceVisibility: "hidden",
                       transformStyle: "preserve-3d",
                     }}
-                    whileHover={{ scale: 1.08, z: 20 }}
+                    onClick={() => onParshadClick(p)}
                   >
+                    {/* Golden sparkle halo — outer glow */}
+                    <motion.div
+                      className="absolute -inset-2 rounded-3xl pointer-events-none"
+                      style={{
+                        background: "transparent",
+                        boxShadow: `0 0 18px rgba(212,175,55,0.25), 0 0 36px rgba(212,175,55,0.12), 0 0 56px rgba(212,175,55,0.06)`,
+                        border: "1px solid rgba(212,175,55,0.18)",
+                      }}
+                      animate={{
+                        boxShadow: [
+                          `0 0 18px rgba(212,175,55,0.25), 0 0 36px rgba(212,175,55,0.12), 0 0 56px rgba(212,175,55,0.06)`,
+                          `0 0 24px rgba(212,175,55,0.35), 0 0 48px rgba(212,175,55,0.18), 0 0 72px rgba(212,175,55,0.08)`,
+                          `0 0 18px rgba(212,175,55,0.25), 0 0 36px rgba(212,175,55,0.12), 0 0 56px rgba(212,175,55,0.06)`,
+                        ],
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.6 }}
+                    />
                     <div
                       className="relative w-full h-full rounded-2xl overflow-hidden"
                       style={{
-                        border: `1px solid ${accent}25`,
-                        boxShadow: `0 8px 32px rgba(0,0,0,0.35), 0 0 20px ${accent}10, inset 0 1px 0 rgba(255,255,255,0.06)`,
+                        border: "1.5px solid rgba(212,175,55,0.35)",
+                        boxShadow: `0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(212,175,55,0.1), inset 0 1px 0 rgba(255,215,0,0.12)`,
                         transformStyle: "preserve-3d",
                       }}
                     >
                       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${p.image})` }} />
-                      <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(180deg, transparent 40%, rgba(10,4,24,0.85) 100%)` }} />
+                      <div className="absolute inset-0" style={{ backgroundImage: `linear-gradient(180deg, transparent 30%, rgba(10,4,24,0.9) 100%)` }} />
                       <div className="absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 50% 50%, ${accent}15, transparent 70%)`, mixBlendMode: "overlay" }} />
+
+                      {/* Animated sparkle sweep */}
                       <motion.div
-                        className="absolute inset-0"
+                        className="absolute inset-0 pointer-events-none"
                         style={{
-                          backgroundImage: `linear-gradient(105deg, transparent 30%, ${accent}10 45%, ${accent}20 50%, ${accent}10 55%, transparent 70%)`,
-                          backgroundSize: "250% 100%",
+                          backgroundImage: `linear-gradient(105deg, transparent 25%, rgba(212,175,55,0.08) 40%, rgba(255,215,0,0.18) 50%, rgba(212,175,55,0.08) 60%, transparent 75%)`,
+                          backgroundSize: "300% 100%",
                         }}
-                        animate={{ backgroundPosition: ["200% 0%", "-50% 0%"] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: i * 0.8 }}
+                        animate={{ backgroundPosition: ["250% 0%", "-50% 0%"] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: i * 1.2 }}
                       />
-                      <div className="absolute bottom-0 left-0 right-0 p-2.5 text-center">
-                        <div className="w-1.5 h-1.5 rounded-full mx-auto mb-1" style={{ backgroundColor: accent, boxShadow: `0 0 8px ${accent}` }} />
+
+                      {/* Card content */}
+                      <div className="absolute bottom-0 left-0 right-0 p-3 text-center">
+                        {/* Golden dot indicator */}
+                        <div
+                          className="w-2 h-2 rounded-full mx-auto mb-1.5"
+                          style={{
+                            backgroundColor: "#D4AF37",
+                            boxShadow: "0 0 8px rgba(212,175,55,0.6), 0 0 16px rgba(212,175,55,0.3)",
+                          }}
+                        />
                         <span
-                          className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] font-semibold leading-tight block"
+                          className="text-[10px] md:text-[11px] uppercase tracking-[0.12em] font-semibold leading-tight block"
                           style={{ color: "#fff", fontFamily: "'Cinzel', serif", textShadow: "0 1px 10px rgba(0,0,0,0.95), 0 2px 15px rgba(0,0,0,0.8)" }}
                         >
                           {p.name}
                         </span>
+                        <span
+                          className="text-[7px] uppercase tracking-[0.18em] mt-1 block"
+                          style={{ color: "rgba(212,175,55,0.7)", fontFamily: "'Cinzel', serif", textShadow: "0 1px 6px rgba(0,0,0,0.9)" }}
+                        >
+                          {p.shrineName}
+                        </span>
+                        <p
+                          className="text-[7px] leading-[1.5] mt-1.5 line-clamp-2"
+                          style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Georgia', serif", fontStyle: "italic" }}
+                        >
+                          {p.sacredConnection}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -414,7 +490,7 @@ function ShrineInfoPanel({ shrine, onChoose }: { shrine: FaithShrine; onChoose: 
           </div>
         </div>
 
-        <div className="pointer-events-auto mt-2">
+        <div className="pointer-events-auto mt-2" onPointerDown={(e) => e.stopPropagation()}>
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: `0 0 50px ${accent}40` }}
             whileTap={{ scale: 0.97 }}
@@ -1006,7 +1082,7 @@ export default function SanataniPage() {
             />
             {/* Content */}
             <div className="absolute inset-0 z-30 pointer-events-none" data-shrine-info>
-              <ShrineInfoPanel shrine={displayShrine} onChoose={() => router.push('/parshads')} />
+               <ShrineInfoPanel shrine={displayShrine} parshads={allParshads.filter(p => p.faith === "hindu").slice(0, 3)} onChoose={() => router.push('/parshads')} onParshadClick={(p) => router.push(`/shrine/${p.shrineId}`)} />
             </div>
             {/* Floating Cards (rendered only in detail phase to avoid gallery transition duplicates) */}
             {phase === "detail" && (
@@ -1047,7 +1123,7 @@ export default function SanataniPage() {
             />
             {/* Content */}
             <div className="absolute inset-0 z-30 pointer-events-none">
-              <ShrineInfoPanel shrine={transitionShrine} onChoose={() => router.push('/parshads')} />
+              <ShrineInfoPanel shrine={transitionShrine} parshads={allParshads.filter(p => p.faith === "hindu").slice(0, 3)} onChoose={() => router.push('/parshads')} onParshadClick={(p) => router.push(`/shrine/${p.shrineId}`)} />
             </div>
             {/* Floating Cards */}
             <div className="absolute inset-0 z-40 pointer-events-none">

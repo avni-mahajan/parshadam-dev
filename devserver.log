@@ -1,0 +1,82 @@
+
+> parshadam@0.1.0 dev
+> next dev --webpack
+
+▲ Next.js 16.2.6 (webpack)
+- Local:         http://localhost:3000
+- Network:       http://10.246.116.222:3000
+✓ Ready in 1235ms
+- Experiments (use with caution):
+  · optimizePackageImports
+
+[browser] Image with src "/images/panjirithali.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "/images/dryfruit.jpg.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "/images/gulkand.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "/images/pinkladdu.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+○ Compiling /gifts ...
+ GET /gifts 200 in 7.2s (next.js: 6.6s, application-code: 599ms)
+ GET /gifts 200 in 83ms (next.js: 9ms, application-code: 74ms)
+ GET /gifts 200 in 416ms (next.js: 232ms, application-code: 184ms)
+ GET /gifts 200 in 428ms (next.js: 13ms, application-code: 415ms)
+[browser] Image with src "/images/pinkladdu.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "/images/dryfruit.jpg.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "/images/gulkand.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "/images/panjirithali.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "/images/dryfruit.jpg.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /gifts 200 in 276ms (next.js: 181ms, application-code: 96ms)
+ GET /gifts 200 in 554ms (next.js: 11ms, application-code: 543ms)
+ GET /gifts 200 in 414ms (next.js: 289ms, application-code: 125ms)
+[browser] Image with src "/images/pinkladdu.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height.
+[browser] Image with src "/images/panjirithali.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height.
+ GET /gifts 200 in 1116ms (next.js: 995ms, application-code: 121ms)
+ GET /gifts 200 in 561ms (next.js: 376ms, application-code: 185ms)
+ GET /gifts 200 in 167ms (next.js: 81ms, application-code: 85ms)
+ GET /gifts 200 in 109ms (next.js: 68ms, application-code: 41ms)
+ GET /gifts 200 in 144ms (next.js: 66ms, application-code: 77ms)
+ GET /gifts 200 in 141ms (next.js: 87ms, application-code: 54ms)
+ GET /gifts 200 in 193ms (next.js: 94ms, application-code: 98ms)
+ GET /gifts 200 in 152ms (next.js: 74ms, application-code: 79ms)
+ GET /gifts 200 in 133ms (next.js: 78ms, application-code: 55ms)
+ GET /gifts 200 in 112ms (next.js: 66ms, application-code: 46ms)
+ GET /gifts 200 in 159ms (next.js: 71ms, application-code: 88ms)
+ GET /gifts 200 in 127ms (next.js: 66ms, application-code: 61ms)
+ GET /gifts 200 in 899ms (next.js: 74ms, application-code: 825ms)
+ GET /gifts 200 in 450ms (next.js: 322ms, application-code: 128ms)
+ GET /gifts 200 in 417ms (next.js: 14ms, application-code: 403ms)
+ GET /gifts 200 in 3.8s (next.js: 944ms, application-code: 2.9s)
+[browser] Uncaught Error: Internal Next.js error: Router action dispatched before initialization.
+ GET /gifts 200 in 804ms (next.js: 259ms, application-code: 545ms)
+ GET /gifts 200 in 193ms (next.js: 15ms, application-code: 179ms)
+[browser] Image with src "/images/gulkand.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /gifts 200 in 5.5s (next.js: 5.1s, application-code: 407ms)
+ GET /gifts 200 in 4.0s (next.js: 327ms, application-code: 3.7s)
+ GET /gifts 200 in 242ms (next.js: 151ms, application-code: 91ms)
+ GET /gifts 200 in 712ms (next.js: 230ms, application-code: 483ms)
+ GET /gifts 200 in 598ms (next.js: 117ms, application-code: 481ms)
+[browser] Image with src "/images/pinkladdu.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /gifts 200 in 454ms (next.js: 324ms, application-code: 130ms)
+ GET /gifts 200 in 659ms (next.js: 9ms, application-code: 650ms)
+[browser] Image with src "/images/coconutladdu.png" has "fill" and a height value of 0. This is likely because the parent element of the image has not been styled to have a set height.
+ GET /gifts 200 in 3.0s (next.js: 626ms, application-code: 2.4s)
+[browser] Image with src "/images/pinkladdu.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /gifts 200 in 632ms (next.js: 463ms, application-code: 169ms)
+ GET /gifts 200 in 522ms (next.js: 10ms, application-code: 512ms)
+ GET /gifts 200 in 523ms (next.js: 93ms, application-code: 430ms)
+ GET /gifts 200 in 2.2min (next.js: 437ms, application-code: 2.2min)
+ GET /gifts 200 in 971ms (next.js: 26ms, application-code: 945ms)
+[browser] Image with src "/images/pinkladdu.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /gifts 200 in 1689ms (next.js: 1317ms, application-code: 372ms)
+ GET /gifts 200 in 565ms (next.js: 19ms, application-code: 546ms)
+ GET /gifts 200 in 315ms (next.js: 22ms, application-code: 293ms)
+ GET /gifts 200 in 2.9s (next.js: 1424ms, application-code: 1428ms)
+ GET /gifts 200 in 717ms (next.js: 444ms, application-code: 273ms)
+ GET /gifts 200 in 972ms (next.js: 58ms, application-code: 915ms)
+ GET /gifts 200 in 763ms (next.js: 405ms, application-code: 357ms)
+ GET /gifts 200 in 483ms (next.js: 17ms, application-code: 466ms)
+○ Compiling /_not-found ...
+ GET /what-we-do 404 in 1570ms (next.js: 191ms, application-code: 1379ms)
