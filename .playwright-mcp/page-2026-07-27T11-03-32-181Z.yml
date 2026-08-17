@@ -1,0 +1,73 @@
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - generic [ref=f6e3]:
+      - link "VirVanam Logo VirVanam Foundation" [ref=f6e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f6e6]:
+          - img "VirVanam Logo" [ref=f6e8]
+          - generic [ref=f6e9]:
+            - generic [ref=f6e10]: VirVanam
+            - generic [ref=f6e11]: Foundation
+      - navigation [ref=f6e12]:
+        - link "What We Do" [ref=f6e13] [cursor=pointer]:
+          - /url: /what-we-do
+        - link "About Vir" [ref=f6e14] [cursor=pointer]:
+          - /url: /about
+        - link "Partnerships" [ref=f6e15] [cursor=pointer]:
+          - /url: /partnerships
+        - link "Field Blogs & Media" [ref=f6e16] [cursor=pointer]:
+          - /url: /blog
+      - link "Contact Us" [ref=f6e18] [cursor=pointer]:
+        - /url: /contact
+  - main [ref=f6e19]:
+    - generic [ref=f6e21]:
+      - heading "404" [level=1] [ref=f6e22]
+      - heading "This page could not be found." [level=2] [ref=f6e24]
+  - contentinfo [ref=f6e25]:
+    - generic [ref=f6e26]:
+      - generic [ref=f6e27]:
+        - generic [ref=f6e28]:
+          - link "VirVanam Logo VirVanam Foundation" [ref=f6e29] [cursor=pointer]:
+            - /url: /
+            - generic [ref=f6e30]:
+              - img "VirVanam Logo" [ref=f6e32]
+              - generic [ref=f6e33]:
+                - generic [ref=f6e34]: VirVanam
+                - generic [ref=f6e35]: Foundation
+          - paragraph [ref=f6e36]: Wildlife conservation through the lens of a 14-year-old changemaker. Dedicated to promoting Biodiversity, saving Gharials and protecting riverine ecosystem in Punjab.
+          - generic [ref=f6e37]:
+            - link "Instagram" [ref=f6e38] [cursor=pointer]:
+              - /url: https://www.instagram.com/virvanam/
+            - link "Twitter" [ref=f6e42] [cursor=pointer]:
+              - /url: "#"
+            - link "Email" [ref=f6e45] [cursor=pointer]:
+              - /url: mailto:virvanam2011@gmail.com
+        - generic [ref=f6e49]:
+          - heading "Explore" [level=4] [ref=f6e50]
+          - list [ref=f6e51]:
+            - listitem [ref=f6e52]:
+              - link "Meet Vir" [ref=f6e53] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=f6e54]:
+              - link "What We Do" [ref=f6e55] [cursor=pointer]:
+                - /url: /what-we-do
+            - listitem [ref=f6e56]:
+              - link "Field Blogs & Media" [ref=f6e57] [cursor=pointer]:
+                - /url: /blog
+        - generic [ref=f6e58]:
+          - heading "Collaboration" [level=4] [ref=f6e59]
+          - list [ref=f6e60]:
+            - listitem [ref=f6e61]:
+              - link "Partner With Us" [ref=f6e62] [cursor=pointer]:
+                - /url: /partnerships
+            - listitem [ref=f6e63]:
+              - link "Contact" [ref=f6e64] [cursor=pointer]:
+                - /url: /contact
+      - generic [ref=f6e65]:
+        - paragraph [ref=f6e66]: © 2026 Virvanam Foundation. All rights reserved.
+        - generic [ref=f6e67]:
+          - link "Privacy Policy" [ref=f6e68] [cursor=pointer]:
+            - /url: /privacy
+          - link "Terms of Service" [ref=f6e69] [cursor=pointer]:
+            - /url: /terms
+  - button "Open Next.js Dev Tools" [ref=f6e75] [cursor=pointer]

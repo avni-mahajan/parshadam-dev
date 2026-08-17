@@ -1,0 +1,58 @@
+- generic [ref=f18e1]:
+  - main [ref=f18e2]:
+    - generic [ref=f18e3]:
+      - generic [ref=f18e5]:
+        - generic [ref=f18e6]:
+          - heading "Parshads" [level=1] [ref=f18e7]
+          - paragraph [ref=f18e10]: Sacred Offerings
+          - paragraph [ref=f18e12]: Handpicked sacred offerings from India's most revered temples, blessed with centuries of devotion.
+        - generic [ref=f18e13]:
+          - button "Filter" [ref=f18e15] [cursor=pointer]
+          - button "Sort" [ref=f18e17] [cursor=pointer]
+      - generic [ref=f18e18]:
+        - generic [ref=f18e22] [cursor=pointer]:
+          - paragraph [ref=f18e23]: Somnath
+          - heading "Dry Fruit Prasadam" [level=3] [ref=f18e24]
+          - paragraph [ref=f18e25]: Blessings from the divine at Somnat…
+        - generic [ref=f18e29] [cursor=pointer]:
+          - paragraph [ref=f18e30]: Mahakaleshwar
+          - heading "Pink Laddu Offering" [level=3] [ref=f18e31]
+          - paragraph [ref=f18e32]: Blessings from the divine at Mahaka…
+        - generic [ref=f18e36] [cursor=pointer]:
+          - paragraph [ref=f18e37]: Kashi Vishwanath
+          - heading "Millet Kheer Blessing" [level=3] [ref=f18e38]
+          - paragraph [ref=f18e39]: Blessings from the divine at Kashi …
+        - generic [ref=f18e43] [cursor=pointer]:
+          - paragraph [ref=f18e44]: Kedarnath
+          - heading "Coconut Laddu Prasad" [level=3] [ref=f18e45]
+          - paragraph [ref=f18e46]: Blessings from the divine at Kedarn…
+      - generic [ref=f18e85]:
+        - button "✕" [active] [ref=f18e86] [cursor=pointer]
+        - generic [ref=f18e87]:
+          - paragraph [ref=f18e88]: Somnath · Gujarat
+          - heading "Dry Fruit Prasadam" [level=2] [ref=f18e89]
+          - paragraph [ref=f18e90]: Blessings from the divine at Somnath
+          - generic [ref=f18e95]:
+            - heading "The Story" [level=3] [ref=f18e96]
+            - paragraph [ref=f18e97]: The sacred tradition of Dry Fruit Prasadam has been passed down through generations.
+          - generic [ref=f18e98]:
+            - heading "Sacred Connection" [level=3] [ref=f18e99]
+            - paragraph [ref=f18e100]: Prasadam from Somnath carries the blessings of Shiva.
+          - generic [ref=f18e101]:
+            - heading "Blessing" [level=3] [ref=f18e102]
+            - paragraph [ref=f18e103]: Grants peace, prosperity, and divine connection.
+          - generic [ref=f18e108]:
+            - heading "What's Inside" [level=3] [ref=f18e109]
+            - paragraph [ref=f18e113]: Dry Fruit Prasadam
+          - generic [ref=f18e114]:
+            - paragraph [ref=f18e115]: Om Namah Shivaya
+            - paragraph [ref=f18e116]: Morning Prayer
+          - button "Add to offering" [ref=f18e118] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f18e131] [cursor=pointer]:
+    - generic [ref=f18e150]:
+      - text: Compiling
+      - generic [ref=f18e151]:
+        - generic [ref=f18e152]: .
+        - generic [ref=f18e153]: .
+        - generic [ref=f18e154]: .
+  - alert [ref=f18e60]

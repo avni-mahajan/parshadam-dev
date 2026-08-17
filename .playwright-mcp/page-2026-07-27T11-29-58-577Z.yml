@@ -1,0 +1,18 @@
+- generic [active] [ref=f15e1]:
+  - main [ref=f15e2]:
+    - generic [ref=f15e5]:
+      - generic [ref=f15e6]:
+        - heading "Parshads" [level=1] [ref=f15e7]
+        - paragraph [ref=f15e10]: Sacred Offerings
+        - paragraph [ref=f15e12]: Handpicked sacred offerings from India's most revered temples, blessed with centuries of devotion.
+      - generic [ref=f15e13]:
+        - button "Filter" [ref=f15e15] [cursor=pointer]
+        - button "Sort" [ref=f15e17] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f15e24] [cursor=pointer]:
+    - generic [ref=f15e27]:
+      - text: Compiling
+      - generic [ref=f15e28]:
+        - generic [ref=f15e29]: .
+        - generic [ref=f15e30]: .
+        - generic [ref=f15e31]: .
+  - alert [ref=f15e32]

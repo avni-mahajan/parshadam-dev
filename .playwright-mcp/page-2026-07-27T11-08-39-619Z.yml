@@ -1,0 +1,37 @@
+- generic [active] [ref=f10e1]:
+  - main [ref=f10e2]:
+    - generic [ref=f10e3]:
+      - generic [ref=f10e5]:
+        - generic [ref=f10e6]:
+          - heading "Parshads" [level=1] [ref=f10e7]
+          - paragraph [ref=f10e8]: Sacred Offerings
+        - generic [ref=f10e10]:
+          - button "Filter" [ref=f10e12] [cursor=pointer]
+          - button "Sort" [ref=f10e14] [cursor=pointer]
+      - generic [ref=f10e15]:
+        - generic [ref=f10e19] [cursor=pointer]:
+          - paragraph [ref=f10e20]: Somnath
+          - heading "Dry Fruit Prasadam" [level=3] [ref=f10e21]
+        - generic [ref=f10e25] [cursor=pointer]:
+          - paragraph [ref=f10e26]: Mahakaleshwar
+          - heading "Pink Laddu Offering" [level=3] [ref=f10e27]
+        - generic [ref=f10e31] [cursor=pointer]:
+          - paragraph [ref=f10e32]: Kashi Vishwanath
+          - heading "Millet Kheer Blessin…" [level=3] [ref=f10e33]
+        - generic [ref=f10e37] [cursor=pointer]:
+          - paragraph [ref=f10e38]: Kedarnath
+          - heading "Coconut Laddu Prasad" [level=3] [ref=f10e39]
+        - generic [ref=f10e43] [cursor=pointer]:
+          - paragraph [ref=f10e44]: Tirumala Tirupati
+          - heading "Dry Fruit Sacred Box" [level=3] [ref=f10e45]
+        - generic [ref=f10e49] [cursor=pointer]:
+          - paragraph [ref=f10e50]: Trimbakeshwar
+          - heading "Millet Kheer Harmony" [level=3] [ref=f10e51]
+  - button "Open Next.js Dev Tools" [ref=f10e152] [cursor=pointer]:
+    - generic [ref=f10e155]:
+      - text: Compiling
+      - generic [ref=f10e156]:
+        - generic [ref=f10e157]: .
+        - generic [ref=f10e158]: .
+        - generic [ref=f10e159]: .
+  - alert [ref=f10e65]

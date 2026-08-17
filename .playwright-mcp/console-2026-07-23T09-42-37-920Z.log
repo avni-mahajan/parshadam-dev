@@ -1,0 +1,137 @@
+[    2038ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[    2038ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[    2038ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[    2038ms] [WARNING] <link rel=preload> uses an unsupported `as` value @ http://localhost:3000/parshads:0
+[    2898ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[    3089ms] [LOG] [HMR] connected @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[    3264ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/parshads" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+        <SegmentViewNode type="page" pagePath="parshads/p...">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function ParshadsPage} serverProvidedParams={{...}}>
+            <ParshadsPage params={Promise} searchParams={Promise}>
+              <main className="relative m..." style={{...}}>
+                <SacredBackdrop>
+                  <div className="pointer-ev..." aria-hidden={true}>
+                    <div>
+                    <div>
+                    <div>
+                    <div>
+                    <div>
+                    <div className="absolute" style={{left:"20%", ...}}>
+                      <MandalaSVG size={220} opacity={0.035}>
+                        <svg width={220} height={220} viewBox="0 0 200 200" fill="none" xmlns="http://www..." ...>
+                          <circle>
+                          <circle>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line
+                            x1={82.49999999999999}
+                            y1={69.68911086754466}
+                            x2={62.499999999999964}
++                           y2={35.04809471616713}
+-                           y2="35.048094716167114"
+                            stroke="currentColor"
+                            strokeWidth="0.3"
+                          >
+                          ...
+                          ...
+                    <div className="absolute" style={{left:"75%", ...}}>
+                      <MandalaSVG size={180} opacity={0.03}>
+                        <svg width={180} height={180} viewBox="0 0 200 200" fill="none" xmlns="http://www..." ...>
+                          <circle>
+                          <circle>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line
+                            x1={82.49999999999999}
+                            y1={69.68911086754466}
+                            x2={62.499999999999964}
++                           y2={35.04809471616713}
+-                           y2="35.048094716167114"
+                            stroke="currentColor"
+                            strokeWidth="0.3"
+                          >
+                          ...
+                          ...
+                    <div className="absolute" style={{left:"35%", ...}}>
+                      <MandalaSVG size={250} opacity={0.025}>
+                        <svg width={250} height={250} viewBox="0 0 200 200" fill="none" xmlns="http://www..." ...>
+                          <circle>
+                          <circle>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line
+                            x1={82.49999999999999}
+                            y1={69.68911086754466}
+                            x2={62.499999999999964}
++                           y2={35.04809471616713}
+-                           y2="35.048094716167114"
+                            stroke="currentColor"
+                            strokeWidth="0.3"
+                          >
+                          ...
+                          ...
+                    <div className="absolute" style={{left:"85%", ...}}>
+                      <MandalaSVG size={160} opacity={0.03}>
+                        <svg width={160} height={160} viewBox="0 0 200 200" fill="none" xmlns="http://www..." ...>
+                          <circle>
+                          <circle>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line>
+                          <line
+                            x1={82.49999999999999}
+                            y1={69.68911086754466}
+                            x2={62.499999999999964}
++                           y2={35.04809471616713}
+-                           y2="35.048094716167114"
+                            stroke="currentColor"
+                            strokeWidth="0.3"
+                          >
+                          ...
+                          ...
+                ...
+        ...
+      ...
+ @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:57
+[  187930ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  190401ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  191347ms] [LOG] [Fast Refresh] done in 945ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27
+[  193463ms] [LOG] [Fast Refresh] done in 3063ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/next-devtools/shared/forward-logs-shared.js:27

@@ -1,0 +1,52 @@
+- generic [active] [ref=f15e1]:
+  - main [ref=f15e2]:
+    - generic [ref=f15e3]:
+      - generic [ref=f15e5]:
+        - generic [ref=f15e6]:
+          - heading "Parshads" [level=1] [ref=f15e7]
+          - paragraph [ref=f15e10]: Sacred Offerings
+          - paragraph [ref=f15e12]: Handpicked sacred offerings from India's most revered temples, blessed with centuries of devotion.
+        - generic [ref=f15e13]:
+          - button "Filter" [ref=f15e15] [cursor=pointer]
+          - button "Sort" [ref=f15e17] [cursor=pointer]
+      - generic [ref=f15e18]:
+        - generic [ref=f15e36] [cursor=pointer]:
+          - paragraph [ref=f15e37]: Somnath
+          - heading "Dry Fruit Prasadam" [level=3] [ref=f15e38]
+          - paragraph [ref=f15e39]: Blessings from the divine at Somnat…
+        - generic [ref=f15e43] [cursor=pointer]:
+          - paragraph [ref=f15e44]: Mahakaleshwar
+          - heading "Pink Laddu Offering" [level=3] [ref=f15e45]
+          - paragraph [ref=f15e46]: Blessings from the divine at Mahaka…
+        - generic [ref=f15e50] [cursor=pointer]:
+          - paragraph [ref=f15e51]: Kashi Vishwanath
+          - heading "Millet Kheer Blessing" [level=3] [ref=f15e52]
+          - paragraph [ref=f15e53]: Blessings from the divine at Kashi …
+        - generic [ref=f15e57] [cursor=pointer]:
+          - paragraph [ref=f15e58]: Kedarnath
+          - heading "Coconut Laddu Prasad" [level=3] [ref=f15e59]
+          - paragraph [ref=f15e60]: Blessings from the divine at Kedarn…
+        - generic [ref=f15e86] [cursor=pointer]:
+          - paragraph [ref=f15e87]: Vaishno Devi
+          - heading "Panjiri Thali Sacred" [level=3] [ref=f15e88]
+          - paragraph [ref=f15e89]: Blessings from the divine at Vaishn…
+        - generic [ref=f15e93] [cursor=pointer]:
+          - paragraph [ref=f15e94]: Tirumala Tirupati
+          - heading "Dry Fruit Sacred Box" [level=3] [ref=f15e95]
+          - paragraph [ref=f15e96]: Blessings from the divine at Tiruma…
+        - generic [ref=f15e100] [cursor=pointer]:
+          - paragraph [ref=f15e101]: Omkleshwar
+          - heading "Pink Laddu Divine Gift" [level=3] [ref=f15e102]
+          - paragraph [ref=f15e103]: Blessings from the divine at Omkles…
+        - generic [ref=f15e107] [cursor=pointer]:
+          - paragraph [ref=f15e108]: Trimbakeshwar
+          - heading "Millet Kheer Harmony" [level=3] [ref=f15e109]
+          - paragraph [ref=f15e110]: Blessings from the divine at Trimba…
+  - button "Open Next.js Dev Tools" [ref=f15e111] [cursor=pointer]:
+    - generic [ref=f15e114]:
+      - text: Rendering
+      - generic [ref=f15e115]:
+        - generic [ref=f15e116]: .
+        - generic [ref=f15e117]: .
+        - generic [ref=f15e118]: .
+  - alert [ref=f15e32]

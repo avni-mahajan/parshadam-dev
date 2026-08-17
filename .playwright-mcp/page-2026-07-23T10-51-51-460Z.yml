@@ -1,0 +1,60 @@
+- generic [active] [ref=f49e1]:
+  - main [ref=f49e2]:
+    - generic [ref=f49e3]:
+      - generic [ref=f49e5]:
+        - generic [ref=f49e6]:
+          - heading "Parshads" [level=1] [ref=f49e7]
+          - paragraph [ref=f49e8]: Sacred Offerings
+        - generic [ref=f49e9]:
+          - button "Filter" [ref=f49e11] [cursor=pointer]
+          - button "Sort" [ref=f49e13] [cursor=pointer]
+      - generic [ref=f49e14]:
+        - generic [ref=f49e18] [cursor=pointer]:
+          - paragraph [ref=f49e19]: Somnath
+          - heading "Dry Fruit Prasadam" [level=3] [ref=f49e20]
+        - generic [ref=f49e24] [cursor=pointer]:
+          - paragraph [ref=f49e25]: Mahakaleshwar
+          - heading "Pink Laddu Offering" [level=3] [ref=f49e26]
+        - generic [ref=f49e30] [cursor=pointer]:
+          - paragraph [ref=f49e31]: Kashi Vishwanath
+          - heading "Millet Kheer Blessin…" [level=3] [ref=f49e32]
+        - generic [ref=f49e36] [cursor=pointer]:
+          - paragraph [ref=f49e37]: Kedarnath
+          - heading "Coconut Laddu Prasad" [level=3] [ref=f49e38]
+        - generic [ref=f49e42] [cursor=pointer]:
+          - paragraph [ref=f49e43]: Vaishno Devi
+          - heading "Panjiri Thali Sacred" [level=3] [ref=f49e44]
+        - generic [ref=f49e48] [cursor=pointer]:
+          - paragraph [ref=f49e49]: Tirumala Tirupati
+          - heading "Dry Fruit Sacred Box" [level=3] [ref=f49e50]
+        - generic [ref=f49e54] [cursor=pointer]:
+          - paragraph [ref=f49e55]: Omkleshwar
+          - heading "Pink Laddu Divine Gi…" [level=3] [ref=f49e56]
+        - generic [ref=f49e60] [cursor=pointer]:
+          - paragraph [ref=f49e61]: Trimbakeshwar
+          - heading "Millet Kheer Harmony" [level=3] [ref=f49e62]
+      - generic [ref=f49e193]:
+        - button "✕" [ref=f49e194] [cursor=pointer]
+        - generic [ref=f49e195]:
+          - paragraph [ref=f49e196]: Mahakaleshwar · Madhya Pradesh
+          - heading "Pink Laddu Offering" [level=2] [ref=f49e197]
+          - paragraph [ref=f49e199]: Blessings from the divine at Mahakaleshwar
+          - generic [ref=f49e200]:
+            - heading "The Story" [level=3] [ref=f49e201]
+            - paragraph [ref=f49e202]: The sacred tradition of Pink Laddu Offering has been passed down through generations.
+          - generic [ref=f49e203]:
+            - heading "Sacred Connection" [level=3] [ref=f49e204]
+            - paragraph [ref=f49e205]: Prasadam from Mahakaleshwar carries the blessings of Shiva.
+          - generic [ref=f49e206]:
+            - heading "Blessing" [level=3] [ref=f49e207]
+            - paragraph [ref=f49e208]: Grants peace, prosperity, and divine connection.
+          - generic [ref=f49e209]:
+            - heading "What's Inside" [level=3] [ref=f49e210]
+            - list [ref=f49e211]:
+              - listitem [ref=f49e212]: Pink Laddu Offering
+          - generic [ref=f49e213]:
+            - paragraph [ref=f49e214]: Om Namah Shivaya
+            - paragraph [ref=f49e215]: Morning Prayer
+          - button "Add to offering" [ref=f49e217] [cursor=pointer]
+  - button "Open Next.js Dev Tools" [ref=f49e182] [cursor=pointer]
+  - alert [ref=f49e186]

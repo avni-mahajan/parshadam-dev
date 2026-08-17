@@ -1,0 +1,39 @@
+- generic [active] [ref=f3e1]:
+  - main [ref=f3e2]:
+    - generic [ref=f3e3]:
+      - heading "Parshads" [level=1] [ref=f3e5]
+      - generic [ref=f3e6]:
+        - generic [ref=f3e7]:
+          - generic [ref=f3e9] [cursor=pointer]:
+            - generic [ref=f3e11]:
+              - paragraph [ref=f3e12]: Somnath
+              - heading "Dry Fruit Prasadam" [level=3] [ref=f3e13]
+            - generic: Explore
+          - generic [ref=f3e15] [cursor=pointer]:
+            - generic [ref=f3e17]:
+              - paragraph [ref=f3e18]: Mahakaleshwar
+              - heading "Pink Laddu Offering" [level=3] [ref=f3e19]
+            - generic: Explore
+          - generic [ref=f3e21] [cursor=pointer]:
+            - generic [ref=f3e23]:
+              - paragraph [ref=f3e24]: Kashi Vishwanath
+              - heading "Millet Kheer Blessing" [level=3] [ref=f3e25]
+            - generic: Explore
+        - generic [ref=f3e26]:
+          - generic [ref=f3e28] [cursor=pointer]:
+            - generic [ref=f3e30]:
+              - paragraph [ref=f3e31]: Kedarnath
+              - heading "Coconut Laddu Prasad" [level=3] [ref=f3e32]
+            - generic: Explore
+          - generic [ref=f3e34] [cursor=pointer]:
+            - generic [ref=f3e36]:
+              - paragraph [ref=f3e37]: Vaishno Devi
+              - heading "Panjiri Thali Sacred" [level=3] [ref=f3e38]
+            - generic: Explore
+          - generic [ref=f3e40] [cursor=pointer]:
+            - generic [ref=f3e42]:
+              - paragraph [ref=f3e43]: Tirumala Tirupati
+              - heading "Dry Fruit Sacred Box" [level=3] [ref=f3e44]
+            - generic: Explore
+  - button "Open Next.js Dev Tools" [ref=f3e183] [cursor=pointer]
+  - alert [ref=f3e187]

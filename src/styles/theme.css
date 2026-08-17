@@ -22,6 +22,16 @@
 
   --color-glow: #E5B93D; /* Temple Gold */
 
+  --color-sacred-lavender: #E8E0F0;
+  --color-sacred-lavender-mist: #F0ECF5;
+  --color-sacred-cream: #FDF8F0;
+  --color-sacred-ivory: #FFFEF9;
+  --color-sacred-honey: #F5E6C8;
+  --color-sacred-rose: #F2D9D5;
+  --color-sacred-sage: #E8EDE5;
+  --color-sacred-amber-soft: #F5DEB3;
+  --color-sacred-warm: #FAF3E8;
+
   --color-border: rgba(30, 77, 61, 0.12);
   --color-input: rgba(30, 77, 61, 0.12);
   --color-ring: #E5B93D;

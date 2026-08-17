@@ -1,0 +1,119 @@
+- main [ref=f14e2]:
+  - generic [ref=f14e3]:
+    - generic [ref=f14e5]:
+      - generic [ref=f14e6]:
+        - heading "Parshads" [level=1] [ref=f14e7]
+        - paragraph [ref=f14e10]: Sacred Offerings
+        - paragraph [ref=f14e12]: Handpicked sacred offerings from India's most revered temples, blessed with centuries of devotion.
+      - generic [ref=f14e13]:
+        - button "Filter" [ref=f14e15] [cursor=pointer]
+        - button "Sort" [ref=f14e17] [cursor=pointer]
+    - generic [ref=f14e18]:
+      - generic [ref=f14e22] [cursor=pointer]:
+        - paragraph [ref=f14e23]: Somnath
+        - heading "Dry Fruit Prasadam" [level=3] [ref=f14e24]
+        - paragraph [ref=f14e25]: Blessings from the divine at Somnat…
+      - generic [ref=f14e29] [cursor=pointer]:
+        - paragraph [ref=f14e30]: Mahakaleshwar
+        - heading "Pink Laddu Offering" [level=3] [ref=f14e31]
+        - paragraph [ref=f14e32]: Blessings from the divine at Mahaka…
+      - generic [ref=f14e36] [cursor=pointer]:
+        - paragraph [ref=f14e37]: Kashi Vishwanath
+        - heading "Millet Kheer Blessing" [level=3] [ref=f14e38]
+        - paragraph [ref=f14e39]: Blessings from the divine at Kashi …
+      - generic [ref=f14e43] [cursor=pointer]:
+        - paragraph [ref=f14e44]: Kedarnath
+        - heading "Coconut Laddu Prasad" [level=3] [ref=f14e45]
+        - paragraph [ref=f14e46]: Blessings from the divine at Kedarn…
+      - generic [ref=f14e50] [cursor=pointer]:
+        - paragraph [ref=f14e51]: Vaishno Devi
+        - heading "Panjiri Thali Sacred" [level=3] [ref=f14e52]
+        - paragraph [ref=f14e53]: Blessings from the divine at Vaishn…
+      - generic [ref=f14e57] [cursor=pointer]:
+        - paragraph [ref=f14e58]: Tirumala Tirupati
+        - heading "Dry Fruit Sacred Box" [level=3] [ref=f14e59]
+        - paragraph [ref=f14e60]: Blessings from the divine at Tiruma…
+      - generic [ref=f14e64] [cursor=pointer]:
+        - paragraph [ref=f14e65]: Omkleshwar
+        - heading "Pink Laddu Divine Gift" [level=3] [ref=f14e66]
+        - paragraph [ref=f14e67]: Blessings from the divine at Omkles…
+      - generic [ref=f14e71] [cursor=pointer]:
+        - paragraph [ref=f14e72]: Trimbakeshwar
+        - heading "Millet Kheer Harmony" [level=3] [ref=f14e73]
+        - paragraph [ref=f14e74]: Blessings from the divine at Trimba…
+      - generic [ref=f14e78] [cursor=pointer]:
+        - paragraph [ref=f14e79]: Sri Harmandir Sahib
+        - heading "Coconut Laddu Grace" [level=3] [ref=f14e80]
+        - paragraph [ref=f14e81]: Blessings from the divine at Sri Ha…
+      - generic [ref=f14e85] [cursor=pointer]:
+        - paragraph [ref=f14e86]: Somnath
+        - heading "Dry Fruit Prasadam" [level=3] [ref=f14e87]
+        - paragraph [ref=f14e88]: Blessings from the divine at Somnat…
+      - generic [ref=f14e92] [cursor=pointer]:
+        - paragraph [ref=f14e93]: Mahakaleshwar
+        - heading "Pink Laddu Offering" [level=3] [ref=f14e94]
+        - paragraph [ref=f14e95]: Blessings from the divine at Mahaka…
+      - generic [ref=f14e99] [cursor=pointer]:
+        - paragraph [ref=f14e100]: Kashi Vishwanath
+        - heading "Millet Kheer Blessing" [level=3] [ref=f14e101]
+        - paragraph [ref=f14e102]: Blessings from the divine at Kashi …
+      - generic [ref=f14e106] [cursor=pointer]:
+        - paragraph [ref=f14e107]: Kedarnath
+        - heading "Coconut Laddu Prasad" [level=3] [ref=f14e108]
+        - paragraph [ref=f14e109]: Blessings from the divine at Kedarn…
+      - generic [ref=f14e113] [cursor=pointer]:
+        - paragraph [ref=f14e114]: Vaishno Devi
+        - heading "Panjiri Thali Sacred" [level=3] [ref=f14e115]
+        - paragraph [ref=f14e116]: Blessings from the divine at Vaishn…
+      - generic [ref=f14e120] [cursor=pointer]:
+        - paragraph [ref=f14e121]: Tirumala Tirupati
+        - heading "Dry Fruit Sacred Box" [level=3] [ref=f14e122]
+        - paragraph [ref=f14e123]: Blessings from the divine at Tiruma…
+      - generic [ref=f14e127] [cursor=pointer]:
+        - paragraph [ref=f14e128]: Omkleshwar
+        - heading "Pink Laddu Divine Gift" [level=3] [ref=f14e129]
+        - paragraph [ref=f14e130]: Blessings from the divine at Omkles…
+      - generic [ref=f14e134] [cursor=pointer]:
+        - paragraph [ref=f14e135]: Trimbakeshwar
+        - heading "Millet Kheer Harmony" [level=3] [ref=f14e136]
+        - paragraph [ref=f14e137]: Blessings from the divine at Trimba…
+      - generic [ref=f14e141] [cursor=pointer]:
+        - paragraph [ref=f14e142]: Sri Harmandir Sahib
+        - heading "Coconut Laddu Grace" [level=3] [ref=f14e143]
+        - paragraph [ref=f14e144]: Blessings from the divine at Sri Ha…
+      - generic [ref=f14e148] [cursor=pointer]:
+        - paragraph [ref=f14e149]: Somnath
+        - heading "Dry Fruit Prasadam" [level=3] [ref=f14e150]
+        - paragraph [ref=f14e151]: Blessings from the divine at Somnat…
+      - generic [ref=f14e155] [cursor=pointer]:
+        - paragraph [ref=f14e156]: Mahakaleshwar
+        - heading "Pink Laddu Offering" [level=3] [ref=f14e157]
+        - paragraph [ref=f14e158]: Blessings from the divine at Mahaka…
+      - generic [ref=f14e162] [cursor=pointer]:
+        - paragraph [ref=f14e163]: Kashi Vishwanath
+        - heading "Millet Kheer Blessing" [level=3] [ref=f14e164]
+        - paragraph [ref=f14e165]: Blessings from the divine at Kashi …
+      - generic [ref=f14e169] [cursor=pointer]:
+        - paragraph [ref=f14e170]: Kedarnath
+        - heading "Coconut Laddu Prasad" [level=3] [ref=f14e171]
+        - paragraph [ref=f14e172]: Blessings from the divine at Kedarn…
+      - generic [ref=f14e176] [cursor=pointer]:
+        - paragraph [ref=f14e177]: Vaishno Devi
+        - heading "Panjiri Thali Sacred" [level=3] [ref=f14e178]
+        - paragraph [ref=f14e179]: Blessings from the divine at Vaishn…
+      - generic [ref=f14e183] [cursor=pointer]:
+        - paragraph [ref=f14e184]: Tirumala Tirupati
+        - heading "Dry Fruit Sacred Box" [level=3] [ref=f14e185]
+        - paragraph [ref=f14e186]: Blessings from the divine at Tiruma…
+      - generic [ref=f14e190] [cursor=pointer]:
+        - paragraph [ref=f14e191]: Omkleshwar
+        - heading "Pink Laddu Divine Gift" [level=3] [ref=f14e192]
+        - paragraph [ref=f14e193]: Blessings from the divine at Omkles…
+      - generic [ref=f14e197] [cursor=pointer]:
+        - paragraph [ref=f14e198]: Trimbakeshwar
+        - heading "Millet Kheer Harmony" [level=3] [ref=f14e199]
+        - paragraph [ref=f14e200]: Blessings from the divine at Trimba…
+      - generic [ref=f14e204] [cursor=pointer]:
+        - paragraph [ref=f14e205]: Sri Harmandir Sahib
+        - heading "Coconut Laddu Grace" [level=3] [ref=f14e206]
+        - paragraph [ref=f14e207]: Blessings from the divine at Sri Ha…
